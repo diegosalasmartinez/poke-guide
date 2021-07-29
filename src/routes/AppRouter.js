@@ -18,9 +18,10 @@ export default class AppRouter extends Component {
         return (
         <BrowserRouter>
             <React.Suspense fallback={loading}>
-              <Route path="/" name="Pokemon" render={props => <Header {...props}/>} />
+              <Route path="/" name="Header" render={props => <Header {...props}/>} />
               <Container className="bg-main">
                 <Switch>
+                    <Route exact path="/" name="Pokemon" render={props => <Pokemons {...props}/>} />
                     <Route exact path="/pokemons" name="Pokemon" render={props => <Pokemons {...props}/>} />
                     <Route path="/" name="404" render={props => <Page404 {...props}/>} />
                 </Switch>

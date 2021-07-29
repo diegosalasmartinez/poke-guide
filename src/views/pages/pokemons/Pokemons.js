@@ -23,6 +23,7 @@ export default class Pokemons extends Component {
         this.state = {
             pagination: new pagination(0,20),
             pokemons: [],
+            pokemonsTotalLength: 0,
             pokemonsHashMap: {},
             pokemonSelected: new PokemonModel(),
             loaded: false
@@ -30,20 +31,35 @@ export default class Pokemons extends Component {
     }
 
     async componentDidMount(){
+        await this.loadList();
+    }
+    
+    onClickPage = (indexPage) => {
+        const { pagination } = this.state;
+        let paginationUpdated = {...pagination};
+        paginationUpdated.offset = paginationUpdated.limit * (indexPage - 1);
+        this.setState({ pagination: paginationUpdated }, async function(){
+            await this.loadList();
+        })
+    }
+
+    loadList = async () => {
         const res = await getPokemons(this.state.pagination);
+        const pokemonsTotalLength = res.count;
         let pokemons = [];
         for(let i=0; i<res.results.length; i++){
             const newPokemon = await apiCustom(res.results[i].url);
             pokemons = [...pokemons, {...newPokemon}];
         }
         this.setState({
-            pokemons, 
+            pokemons,
+            pokemonsTotalLength,
             pokemonsHashMap: arrayToMap(pokemons),
             pokemonSelected: {...pokemons[0]}, 
             loaded: true
         });
     }
-    
+
     prepareData = () => {
         const pokemons = [...this.state.pokemons];
         let pokemonsList = [];
@@ -70,7 +86,7 @@ export default class Pokemons extends Component {
     }
 
     render() {
-        const { loaded, pokemonSelected } = this.state;
+        const { loaded, pokemonSelected, pokemonsTotalLength, pagination } = this.state;
         const headers = ["N°", "Name", "Height", "Weight", "Photo"];
         const fieldNames = ["id", "name", "height", "weight", "photo", "showDetails"];
         const pokemons = this.prepareData();
@@ -96,7 +112,11 @@ export default class Pokemons extends Component {
                                     ),
                                 }}
                             />
-                            <RPagination/>
+                            <RPagination 
+                                itemsLength={pokemonsTotalLength} 
+                                pagination={pagination}
+                                onClickPage={this.onClickPage}
+                            />
                         </Col>
                         <Col xs="5">
                             <PokemonPrevisualization pokemon={pokemonSelected}/>

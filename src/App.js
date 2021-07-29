@@ -5,8 +5,8 @@ import './styles/scss/style.scss'
 class App extends Component {
   render() {
     return (
-      <AppRouter></AppRouter>
-    );
+      <AppRouter/>
+    )
   }
 }
 
