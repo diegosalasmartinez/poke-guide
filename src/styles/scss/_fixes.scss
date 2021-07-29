@@ -1,4 +1,8 @@
 // todo: disabled button styles
+body{
+  background-color: $white;
+}
+
 button {
   &:disabled {
     cursor: default;
@@ -14,3 +18,4 @@ button {
     margin-top: 0 !important;
   }
 }
+
