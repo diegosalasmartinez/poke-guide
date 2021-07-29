@@ -1,0 +1,30 @@
+.table tbody tr td{
+    vertical-align: middle;
+}
+
+.pokemon_table tbody tr td:nth-child(1){
+    width: 70px;
+}
+
+
+.pokemon_table tbody tr td:nth-child(3),
+.pokemon_table tbody tr td:nth-child(4),
+.pokemon_table tbody tr td:nth-child(5){
+    width: 100px;
+}
+
+.pokemon_table tbody tr td:nth-child(6){
+    width: 150px;
+}
+
+.pokemon_table tbody tr td:nth-child(5),
+.pokemon_table tbody tr td:nth-child(6){
+    text-align: center;
+}
+
+.pokemon_prev_img{
+    // width: 150px; /* width of container */
+    // height: 150px; /* height of container */
+    // object-fit: cover;
+    // object-position: 0% 0%; /* try 20px 10px */
+}
