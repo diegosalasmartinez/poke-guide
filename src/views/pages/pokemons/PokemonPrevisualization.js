@@ -12,7 +12,6 @@ import { capitalize, statsList } from '../../../utils/common'
 export default class PokemonPrevisualization extends Component {
     render() {
         const { pokemon } = this.props;
-        console.log(pokemon);
 
         return (
             <Card>

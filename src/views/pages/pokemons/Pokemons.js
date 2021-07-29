@@ -15,6 +15,7 @@ import pagination from '../../../services/models/common/pagination'
 import PokemonModel from '../../../services/models/PokemonModel'
 import { arrayToMap, capitalize } from '../../../utils/common'
 import PokemonPrevisualization from './PokemonPrevisualization'
+import RPagination from 'src/components/RPagination'
 
 export default class Pokemons extends Component {
     constructor(props){
@@ -94,10 +95,11 @@ export default class Pokemons extends Component {
                                         <RButton onClick={() => this.onClickPokemon(item.id)}>See more</RButton>
                                     ),
                                 }}
-                            ></RTable>
+                            />
+                            <RPagination/>
                         </Col>
                         <Col xs="5">
-                            <PokemonPrevisualization pokemon={pokemonSelected}></PokemonPrevisualization>
+                            <PokemonPrevisualization pokemon={pokemonSelected}/>
                         </Col>
                     </Row>
                     :
