@@ -2,3 +2,16 @@
     background-color: $white;
     color: $black;
 }
+
+//Pokemon previsualization
+.pokemon_prev{
+    margin-left: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: small;
+
+    a{
+        color: $white;
+        text-decoration: none;
+    }
+}

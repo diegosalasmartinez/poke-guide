@@ -129,5 +129,6 @@ const getColorType = (type) => {
 }
 
 export {
-    getColorType
+    getColorType,
+    typesList
 }
