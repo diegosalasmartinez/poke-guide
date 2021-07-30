@@ -4,8 +4,10 @@ import {
     Image, 
     Row,
     Col,
-    Badge
+    Badge,
+    Button
 } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { getColorType } from '../../../utils/types';
 import { capitalize, statsList } from '../../../utils/common'
 
@@ -16,7 +18,16 @@ export default class PokemonPrevisualization extends Component {
         return (
             <Card>
                 <Card.Body>
-                    <Card.Title>{capitalize(pokemon.name)}</Card.Title>
+                    <Row>
+                        <Col>
+                            <Card.Title>
+                                {capitalize(pokemon.name)}
+                                <Button className="pokemon_prev" onClick={this.onClickSeeMore}>
+                                    <Link to={"/pokemons/"+pokemon.name}>Ver más</Link>
+                                </Button>
+                            </Card.Title>
+                        </Col>
+                    </Row>
                     <Row>
                         <Col xs="6">
                             <Image className="pokemon_prev_img" src={pokemon.sprites.front_default} height="200px"></Image>
