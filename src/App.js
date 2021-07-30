@@ -1,13 +1,13 @@
-import './App.css';
+import React, { Component } from 'react'
+import AppRouter from './routes/AppRouter';
+import './styles/scss/style.scss'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        This is the beggining
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <AppRouter/>
+    )
+  }
 }
 
 export default App;
