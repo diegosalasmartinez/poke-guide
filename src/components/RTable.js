@@ -42,29 +42,27 @@ export default class RTable extends Component {
     }
 
     render() {
-        const { headers, fieldNames, items, className, clickeable } = this.props;        
+        const { headers, fieldNames, items, className, clickeable } = this.props;
 
         return (
-            <>
-                <Table striped bordered hover responsive className={className}>
-                    <thead>
-                        <tr>
-                            {headers.map((header, index) => 
-                                <th key={index}>{header}</th>
-                            )}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {items.map((item, index) => 
-                            <tr key={item.id} onClick={() => this.onClickCell(item, index)} style={this.cellsStyle(index)}>
-                                {headers.map((header, index) => {
-                                    return this.renderObject(item, fieldNames[index], index);
-                                })}
-                            </tr>
+            <Table striped bordered hover responsive className={className}>
+                <thead>
+                    <tr>
+                        {headers.map((header, index) => 
+                            <th key={index}>{header}</th>
                         )}
-                    </tbody>
-                </Table>
-            </>
+                    </tr>
+                </thead>
+                <tbody>
+                    {items.map((item, index) => 
+                        <tr key={item.id} onClick={() => this.onClickCell(item, index)} style={this.cellsStyle(index)}>
+                            {headers.map((header, index) => {
+                                return this.renderObject(item, fieldNames[index], index);
+                            })}
+                        </tr>
+                    )}
+                </tbody>
+            </Table>
         )
     }
 }
