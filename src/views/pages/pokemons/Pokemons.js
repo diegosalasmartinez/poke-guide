@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { 
     Image, 
     Row,
-    Col
+    Col,
+    Alert
 } from 'react-bootstrap'
 import {
     RButton,
@@ -26,7 +27,8 @@ export default class Pokemons extends Component {
             pokemonsTotalLength: 0,
             pokemonsHashMap: {},
             pokemonSelected: new PokemonModel(),
-            loaded: false
+            loaded: false,
+            failed: false
         }
     }
 
@@ -44,20 +46,25 @@ export default class Pokemons extends Component {
     }
 
     loadList = async () => {
-        const res = await getPokemons(this.state.pagination);
-        const pokemonsTotalLength = res.count;
-        let pokemons = [];
-        for(let i=0; i<res.results.length; i++){
-            const newPokemon = await apiCustom(res.results[i].url);
-            pokemons = [...pokemons, {...newPokemon}];
+        try{
+            const res = await getPokemons(this.state.pagination);
+            const pokemonsTotalLength = res.count;
+            let pokemons = [];
+            for(let i=0; i<res.results.length; i++){
+                const newPokemon = await apiCustom(res.results[i].url);
+                pokemons = [...pokemons, {...newPokemon}];
+            }
+            this.setState({
+                pokemons,
+                pokemonsTotalLength,
+                pokemonsHashMap: arrayToMap(pokemons),
+                pokemonSelected: {...pokemons[0]}, 
+                loaded: true
+            });
+        } catch(e){
+            console.log(e);
+            this.setState({failed: true});
         }
-        this.setState({
-            pokemons,
-            pokemonsTotalLength,
-            pokemonsHashMap: arrayToMap(pokemons),
-            pokemonSelected: {...pokemons[0]}, 
-            loaded: true
-        });
     }
 
     prepareData = () => {
@@ -86,14 +93,17 @@ export default class Pokemons extends Component {
     }
 
     render() {
-        const { loaded, pokemonSelected, pokemonsTotalLength, pagination } = this.state;
+        const { failed, loaded, pokemonSelected, pokemonsTotalLength, pagination } = this.state;
         const headers = ["N°", "Name", "Height", "Weight", "Photo"];
         const fieldNames = ["id", "name", "height", "weight", "photo", "showDetails"];
         const pokemons = this.prepareData();
 
         return (
             <>
-                {loaded ? 
+                { failed && 
+                    <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert>
+                }
+                { !failed && loaded &&
                     <Row>
                         <Col xs="7">
                             <RTable 
@@ -122,7 +132,8 @@ export default class Pokemons extends Component {
                             <PokemonPrevisualization pokemon={pokemonSelected}/>
                         </Col>
                     </Row>
-                    :
+                }
+                { !failed && !loaded &&
                     <Loader></Loader>
                 }
             </>
