@@ -9,6 +9,10 @@ export default class RPagination extends Component {
         }
     }
 
+    componentDidMount(){
+        this.setState({currentIndex: this.props.pageSelected || 1})
+    }
+
     onClickPage = (indexPage) => {
         this.setState({currentIndex: indexPage});
         this.props.onClickPage(indexPage);

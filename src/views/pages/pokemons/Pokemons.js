@@ -33,6 +33,7 @@ export class Pokemons extends Component {
             pokemonsTotalLength: 0,
             pokemonsHashMap: {},
             pokemonSelected: new PokemonModel(),
+            pageSelected: 1,
             loaded: false,
             failed: false
         }
@@ -46,25 +47,24 @@ export class Pokemons extends Component {
         const { pagination } = this.state;
         let paginationUpdated = {...pagination};
         paginationUpdated.offset = paginationUpdated.limit * (indexPage - 1);
-        this.setState({ pagination: paginationUpdated }, async function(){
+        this.setState({ pagination: paginationUpdated, pageSelected: indexPage }, async function(){
             await this.loadList();
         })
     }
 
     loadList = async () => {
-        try{
-            await this.props.getPokemons(this.state.pagination);
-            const pokemons = [...this.props.pokemon.pokemons];
-            this.setState({
-                pokemons,
-                pokemonsHashMap: arrayToMap(pokemons),
-                pokemonSelected: {...pokemons[0]}, 
-                loaded: true
-            });
-        } catch(e){
-            console.log(e);
-            this.setState({failed: true});
-        }
+        this.setState({loaded: false, failed: false});
+        await this.props.getPokemons(this.state.pagination);
+        const pokemon = {...this.props.pokemon};
+        const pokemons = [...pokemon.pokemons];
+        this.setState({
+            pokemons,
+            pokemonsTotalLength: pokemon.count,
+            pokemonsHashMap: arrayToMap(pokemons),
+            pokemonSelected: {...pokemons[0]}, 
+            loaded: !pokemon.isLoading,
+            failed: pokemon.failed
+        });
     }
 
     prepareData = () => {
@@ -93,7 +93,7 @@ export class Pokemons extends Component {
     }
 
     render() {
-        const { failed, loaded, pokemonSelected, pokemonsTotalLength, pagination } = this.state;
+        const { failed, loaded, pokemonSelected, pokemonsTotalLength, pagination, pageSelected } = this.state;
         const headers = ["N°", "Name", "Height", "Weight", "Photo"];
         const fieldNames = ["id", "name", "height", "weight", "photo", "showDetails"];
         const pokemons = this.prepareData();
@@ -123,7 +123,8 @@ export class Pokemons extends Component {
                                 }}
                             />
                             <RPagination 
-                                itemsLength={pokemonsTotalLength} 
+                                itemsLength={pokemonsTotalLength}
+                                pageSelected={pageSelected}
                                 pagination={pagination}
                                 onClickPage={this.onClickPage}
                             />

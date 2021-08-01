@@ -13,6 +13,7 @@ const getPokemons = (pagination) => async (dispatch) => {
     try{
         const res = await getPokemonsAPI(pagination);
         if(res){
+            const count = res.count;
             let pokemons = [];
             for(let i=0; i<res.results.length; i++){
                 const newPokemon = await apiCustom(res.results[i].url);
@@ -20,7 +21,7 @@ const getPokemons = (pagination) => async (dispatch) => {
             }
             return dispatch({
                 type: GET_POKEMONS,
-                playload: {pokemons, pagination}
+                playload: {pokemons, pagination, count}
             })
         }
     } catch(e){
