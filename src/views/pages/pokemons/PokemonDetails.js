@@ -3,6 +3,8 @@ import { Alert } from 'react-bootstrap';
 import PokemonModel from '../../../services/models/PokemonModel';
 import { getPokemonByName } from '../../../services/api/pokemon-api';
 
+const myStorage = window.localStorage;
+
 export default class PokemonDetails extends Component {
     constructor(props){
         super(props);
@@ -20,6 +22,9 @@ export default class PokemonDetails extends Component {
             const pokemonName = this.props.match.params.name;
             const pokemon = await getPokemonByName(pokemonName);
             this.setState({pokemonName, pokemon});
+            const storage = myStorage.getItem('pokemon');
+            console.log(storage);
+            
         } catch(e){
             let errorMessage = "Hubo un problema al conectarse con el servidor."
             if(e.response.status === 404){

@@ -9,16 +9,22 @@ import {
     RButton,
     RTable
 } from '../../../components'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
+
+
+//import { apiCustom } from '../../../services/api/api'
+//import { getPokemons } from '../../../services/api/pokemon-api'
+
 import Loader from '../../../views/common/Loader'
-import { apiCustom } from '../../../services/api/api'
-import { getPokemons } from '../../../services/api/pokemon-api'
+import RPagination from '../../../components/RPagination'
 import pagination from '../../../services/models/common/pagination'
 import PokemonModel from '../../../services/models/PokemonModel'
-import { arrayToMap, capitalize } from '../../../utils/common'
 import PokemonPrevisualization from './PokemonPrevisualization'
-import RPagination from 'src/components/RPagination'
+import { arrayToMap, capitalize, equalPagination } from '../../../utils/common'
 
-export default class Pokemons extends Component {
+export class Pokemons extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -47,16 +53,10 @@ export default class Pokemons extends Component {
 
     loadList = async () => {
         try{
-            const res = await getPokemons(this.state.pagination);
-            const pokemonsTotalLength = res.count;
-            let pokemons = [];
-            for(let i=0; i<res.results.length; i++){
-                const newPokemon = await apiCustom(res.results[i].url);
-                pokemons = [...pokemons, {...newPokemon}];
-            }
+            await this.props.getPokemons(this.state.pagination);
+            const pokemons = [...this.props.pokemon.pokemons];
             this.setState({
                 pokemons,
-                pokemonsTotalLength,
                 pokemonsHashMap: arrayToMap(pokemons),
                 pokemonSelected: {...pokemons[0]}, 
                 loaded: true
@@ -140,3 +140,17 @@ export default class Pokemons extends Component {
         )
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        pokemon: state.pokemon
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        ...bindActionCreators(pokemonActions, dispatch)
+    }
+}
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Pokemons)
