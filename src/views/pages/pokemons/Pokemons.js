@@ -12,17 +12,12 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
-
-
-//import { apiCustom } from '../../../services/api/api'
-//import { getPokemons } from '../../../services/api/pokemon-api'
-
 import Loader from '../../../views/common/Loader'
 import RPagination from '../../../components/RPagination'
 import pagination from '../../../services/models/common/pagination'
 import PokemonModel from '../../../services/models/PokemonModel'
 import PokemonPrevisualization from './PokemonPrevisualization'
-import { arrayToMap, capitalize, equalPagination } from '../../../utils/common'
+import { arrayToMap, capitalize } from '../../../utils/common'
 
 export class Pokemons extends Component {
     constructor(props){
