@@ -22,7 +22,8 @@ export default class Header extends Component {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Link to="/pokemons" className="nav-link current" onClick={this.onClickNav}>Pokemons</Link>
+                            <Link to="/pokedex" className="nav-link current" onClick={this.onClickNav}>Pokedex</Link>
+                            <Link to="/pokemons" className="nav-link" onClick={this.onClickNav}>Pokemons</Link>
                             <Link to="/items" className="nav-link" onClick={this.onClickNav}>Items</Link>
                             <Link to="/berries" className="nav-link" onClick={this.onClickNav}>Berries</Link>
                         </Nav>

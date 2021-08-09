@@ -5,13 +5,30 @@
 
 //Pokemon previsualization
 .pokemon_prev{
-    margin-left: 10px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    // margin-left: 10px;
+    // padding-top: 0px;
+    // padding-bottom: 0px;
+    // display: flex;
+    // align-items: center;
     font-size: small;
 
     a{
         color: $white;
         text-decoration: none;
+    }
+}
+
+//Pokemon card
+.pokemon_card_title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    button{
+        font-size: small;
+        a{
+            color: $white;
+            text-decoration: none;
+        }
     }
 }
