@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 import { getColorType } from '../../../utils/types';
 import { capitalize } from '../../../utils/common'
 
@@ -29,10 +29,11 @@ export default class PokemonCard extends Component {
                                         {capitalize(pokemon.name)}
                                     </span>
                                     <Button onClick={this.onClickSeeMore}>
-                                        <Link to={"/pokemons/"+pokemon.name}>{">>"}</Link>
+                                        <Link to={"/pokemons/"+pokemon.name}>
+                                            <FontAwesomeIcon icon={faAngleDoubleRight}/>
+                                        </Link>
                                     </Button>
                                 </Card.Title>
-                                <FontAwesomeIcon icon={faCoffee}/>
                             </Col>
                         </Row>
                         <Row className="m-auto">
