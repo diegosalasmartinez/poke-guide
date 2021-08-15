@@ -19,7 +19,7 @@ export default class PokemonCard extends Component {
         const { pokemon } = this.props;
 
         return (
-            <Col xs="3">
+            <Col xs="12" sm="6"  md="4" xl="3">
                 <Card>
                     <Card.Body>
                         <Row>
@@ -37,8 +37,8 @@ export default class PokemonCard extends Component {
                             </Col>
                         </Row>
                         <Row className="m-auto">
-                            <Col>
-                                <Image className="pokemon_prev_img" src={pokemon.sprites.front_default} height="200px"></Image>
+                            <Col xs="12" style={{display: "flex"}}>
+                                <Image className="pokemon_prev_img m-auto" src={pokemon.sprites.front_default} width="150px"></Image>
                             </Col>
                         </Row>
                         <Row>

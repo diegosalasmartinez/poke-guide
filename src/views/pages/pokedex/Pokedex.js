@@ -1,23 +1,16 @@
 import React, { Component } from 'react'
 import { 
-    Image, 
     Row,
-    Col,
     Alert
 } from 'react-bootstrap'
-import {
-    RButton,
-    RTable
-} from '../../../components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
 import Loader from '../../../views/common/Loader'
-import RPagination from '../../../components/RPagination'
 import pagination from '../../../services/models/common/pagination'
 import PokemonModel from '../../../services/models/PokemonModel'
 import PokemonCard from './../pokemons/PokemonCard'
-import { arrayToMap, capitalize } from '../../../utils/common'
+import { arrayToMap } from '../../../utils/common'
 
 export class Pokedex extends Component {
     constructor(props){
@@ -67,7 +60,7 @@ export class Pokedex extends Component {
     }
 
     render() {
-        const { failed, loaded, pokemons, pokemonSelected, pokemonsTotalLength, pagination, pageSelected } = this.state;
+        const { failed, loaded, pokemons } = this.state;
 
         return (
             <>
