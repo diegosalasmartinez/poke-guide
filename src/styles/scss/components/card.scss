@@ -1,34 +1,119 @@
-.card{
-    background-color: $white;
-    color: $black;
-}
+@use "sass:math";
+$card-color: #262626;
 
-//Pokemon previsualization
-.pokemon_prev{
-    // margin-left: 10px;
-    // padding-top: 0px;
-    // padding-bottom: 0px;
-    // display: flex;
-    // align-items: center;
-    font-size: small;
-
-    a{
-        color: $white;
-        text-decoration: none;
+@mixin materializr($colorVar, $accent: '500', $type: background-color) {
+    @if ($accent == '900') {
+        $colorVar: darken($colorVar, 20%);
     }
+    #{$type}: $colorVar;
 }
 
 //Pokemon card
-.pokemon_card_title{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.pokemon_card{
+    position: relative;
+    height: 0;
+    padding-bottom: 150px;
+    margin-bottom: 6.6rem;
 
-    button{
-        font-size: small;
-        a{
-            color: $white;
-            text-decoration: none;
+    h2 {
+        position: absolute;
+        top: calc(100% - 16px);
+        left: 0;
+        width: 100%;
+        padding: 10px 16px;
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+        margin: 0;
+        z-index: 10;
+        color: white;
+        
+        span {
+            display: block;
+            font-weight: 600;
+            padding-bottom: .5rem;
         }
+        
+        .types{
+            display: flex;
+            font-size: .9rem;
+            
+            span{
+                margin-right: .5rem;
+            }
+        }
+
+        &:before,
+        &:after {
+            content: ' ';
+            position: absolute;
+            left: 0;
+            top: -16px;
+            width: 0;
+            border: 8px solid;
+        }
+
+        &:after {
+            top: auto;
+            bottom: 0;
+        }
+
+        @include materializr($card-color, '500');
+        &:after {
+            @include materializr($card-color, '500', border-top-color);
+            @include materializr($card-color, '500', border-right-color);
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+        }
+        &:before {
+            border-top-color: transparent;
+            @include materializr($card-color, '900', border-right-color);
+            @include materializr($card-color, '900', border-bottom-color);
+            border-left-color: transparent;
+        }
+    }
+}
+
+.pokemon_card_img_container{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 16px;
+    left: 16px;
+
+    .pokemon_card_img{
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img{
+            height: 100%;
+        }
+    }
+}
+
+.pokemon_card_btn{
+    position: absolute;
+    right: 16px;
+    top: 15px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: $card-color;
+    cursor: pointer;
+    z-index: 20;
+
+    a{
+        color: white;
     }
 }
