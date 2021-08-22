@@ -1,6 +1,12 @@
-// todo: disabled button styles
 body{
-  background-color: $white;
+  background: rgb(248,249,250);
+  background: linear-gradient(180deg, rgba(248,249,250,1) 0%, rgba(233,231,231,1) 100%);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 button {
@@ -11,11 +17,3 @@ button {
     cursor: default;
   }
 }
-
-// todo: brand button icon margin
-.btn-brand:not(:only-child) {
-  .c-icon {
-    margin-top: 0 !important;
-  }
-}
-

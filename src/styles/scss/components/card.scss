@@ -21,6 +21,8 @@
 }
 
 .pokemon_card_img_container{
+    background-color: $white;
+
     .pokemon_card_img{
         width: 100%;
         height: 100%;
@@ -28,6 +30,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
 
         img{
             z-index: 2;
