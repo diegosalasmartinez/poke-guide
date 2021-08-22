@@ -17,6 +17,7 @@ import { capitalize } from '../../../utils/common'
 export default class PokemonCard extends Component {
     render() {
         const { pokemon } = this.props;
+        const nId = pokemon.id.toString().padStart(3, "0");
 
         return (
             <Col xs="12" sm="6"  md="4" xl="3" className="m-auto">
@@ -27,9 +28,9 @@ export default class PokemonCard extends Component {
                         </div>
                     </div>
                     <div className="pokemon_card_info">
-                        <span>
-                            {capitalize(pokemon.name)}
-                        </span>
+                        <div className="pokemon_card_info_title">
+                            <span>N°{nId} -</span> {capitalize(pokemon.name)}
+                        </div>
                         <div className="types">
                             {pokemon.types.map(type => 
                                 <Badge key={type.slot} style={{backgroundColor: getColorType(type.type.name)}}>
