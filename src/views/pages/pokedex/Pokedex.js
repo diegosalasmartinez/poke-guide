@@ -11,6 +11,7 @@ import pagination from '../../../services/models/common/pagination'
 import PokemonModel from '../../../services/models/PokemonModel'
 import PokemonCard from './../pokemons/PokemonCard'
 import { arrayToMap } from '../../../utils/common'
+import RPagination from '../../../components/RPagination'
 
 export class Pokedex extends Component {
     constructor(props){
@@ -60,7 +61,7 @@ export class Pokedex extends Component {
     }
 
     render() {
-        const { failed, loaded, pokemons } = this.state;
+        const { failed, loaded, pokemons, pokemonsTotalLength, pageSelected, pagination } = this.state;
 
         return (
             <>
@@ -72,6 +73,12 @@ export class Pokedex extends Component {
                         {pokemons && pokemons.length > 0 ?
                             <Row>
                                 {pokemons.map(pokemon => <PokemonCard id={pokemon.id} pokemon={pokemon}/>)}
+                                <RPagination 
+                                    itemsLength={pokemonsTotalLength}
+                                    pageSelected={pageSelected}
+                                    pagination={pagination}
+                                    onClickPage={this.onClickPage}
+                                />
                             </Row>
                             :
                             <Alert color="info">No se encontraron resultados.</Alert>

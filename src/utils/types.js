@@ -90,7 +90,7 @@ const getColorType = (type) => {
         case "flying":
             return "#5EB9B2";
         case "poison":
-            return "#611380";
+            return "#7E1AA6";
         case "ground":
             return "#E1D158";
         case "rock":
@@ -104,7 +104,7 @@ const getColorType = (type) => {
         case "fire":
             return "#FC0C0B";
         case "water":
-            return "#08517A";
+            return "#1480BD";
         case "grass":
             return "#3E9709";
         case "electric":
