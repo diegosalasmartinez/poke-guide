@@ -98,13 +98,10 @@
     cursor: pointer;
     z-index: 20;
     transition: all 0.3s ease-out;
+    color: white;
 
-    a{
-        color: white;
-
-        path{
-            transition: all 0.3s ease-out;
-        }
+    path{
+        transition: all 0.3s ease-out;
     }
 
     &:hover path{

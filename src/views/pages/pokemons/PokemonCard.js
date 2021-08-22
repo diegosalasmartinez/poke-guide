@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 import { 
-    Card,
     Image, 
-    Row,
     Col,
-    Badge,
-    Button
+    Badge
 } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 import { getColorType } from '../../../utils/types';
 import { capitalize } from '../../../utils/common'
 
 
-export default class PokemonCard extends Component {
+class PokemonCard extends Component {
+    onClickSeeMore = () => {
+        this.props.history.push("/pokedex/"+this.props.pokemon.name);
+    }
+
     render() {
         const { pokemon } = this.props;
         const nId = pokemon.id.toString().padStart(3, "0");
@@ -39,13 +40,13 @@ export default class PokemonCard extends Component {
                             )}
                         </div>
                     </div>
-                    <div className="pokemon_card_btn">
-                        <Link to={"/pokedex/"+pokemon.name} onClick={this.onClickSeeMore}>
-                            <FontAwesomeIcon icon={faAngleDoubleRight}/>
-                        </Link>
+                    <div className="pokemon_card_btn" onClick={this.onClickSeeMore}>
+                        <FontAwesomeIcon icon={faAngleDoubleRight}/>
                     </div>
                 </div>
             </Col>
         )
     }
 }
+
+export default withRouter(PokemonCard)

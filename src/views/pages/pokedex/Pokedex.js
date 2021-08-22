@@ -72,7 +72,7 @@ export class Pokedex extends Component {
                     <>
                         {pokemons && pokemons.length > 0 ?
                             <Row>
-                                {pokemons.map(pokemon => <PokemonCard id={pokemon.id} pokemon={pokemon}/>)}
+                                {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
                                 <RPagination 
                                     itemsLength={pokemonsTotalLength}
                                     pageSelected={pageSelected}
