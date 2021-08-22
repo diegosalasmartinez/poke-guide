@@ -39,7 +39,7 @@ export default class PokemonCard extends Component {
                         </div>
                     </div>
                     <div className="pokemon_card_btn">
-                        <Link to={"/pokemons/"+pokemon.name} onClick={this.onClickSeeMore}>
+                        <Link to={"/pokedex/"+pokemon.name} onClick={this.onClickSeeMore}>
                             <FontAwesomeIcon icon={faAngleDoubleRight}/>
                         </Link>
                     </div>

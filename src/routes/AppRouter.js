@@ -11,7 +11,6 @@ const loading = (
 
 const Header = React.lazy(() => import('../views/common/Header'));
 const Pokedex = React.lazy(() => import('../views/pages/pokedex/Pokedex'));
-const Pokemons = React.lazy(() => import('../views/pages/pokemons/Pokemons'));
 const PokemonDetails = React.lazy(() => import('../views/pages/pokemons/PokemonDetails'));
 const Page404 = React.lazy(() => import('../views/pages/404/Page404'));
 
@@ -25,8 +24,7 @@ export default class AppRouter extends Component {
                 <Switch>
                     <Route exact path="/" name="Pokedex" render={props => <Pokedex {...props}/>} />
                     <Route exact path="/pokedex" name="Pokedex" render={props => <Pokedex {...props}/>} />
-                    <Route exact path="/pokemons" name="Pokemon" render={props => <Pokemons {...props}/>} />
-                    <Route exact path="/pokemons/:name" name="Pokemon Details" render={props => <PokemonDetails {...props}/>} />
+                    <Route exact path="/pokedex/:name" name="Pokemon Details" render={props => <PokemonDetails {...props}/>} />
                     <Route path="/" name="404" render={props => <Page404 {...props}/>} />
                 </Switch>
               </Container>
