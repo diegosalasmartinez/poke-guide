@@ -9,11 +9,15 @@
     -webkit-box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     -moz-box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    transition: all 0.3s ease-out;
 
     &:hover{
+        transform: scale(1.15);
+
         .pokemon_card_img_container .pokemon_card_img img{
-            transform: scale(1.15);
+            transform: scale(1.35);
         }
+        .pokemon_card_btn,
         .pokemon_card_info{
             background-color: $primary-hover;
         }
@@ -99,12 +103,9 @@
         }
     }
 
-    &:hover{
-        background-color: $primary-hover;
-
-        path{
-            transform: scale(1.35);
-            transform-origin: center;
-        }
+    &:hover path{
+        transform: scale(1.35);
+        transform-origin: center;
     }
+    
 }

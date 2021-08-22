@@ -1,0 +1,17 @@
+.navbar-light .navbar-nav{
+
+    .nav-link{
+        border-radius: 5px;
+        transition: all 0.3s ease-out;
+        
+        &:hover{
+            background-color: $primary;
+            color: $white;
+        }
+        
+        &.current{
+            background-color: $primary-hover;
+            color: $white;
+        }
+    }
+}

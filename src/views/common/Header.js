@@ -18,7 +18,11 @@ export default class Header extends Component {
         return (
             <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="mb-4">
                 <Container>
-                    <Link to="/" className="navbar-brand">Poke Guide</Link>
+                    <Navbar.Brand>
+                        <Link to="/" className="navbar-brand">
+                            <img src="/assets/pokeball.svg" width="30" height="30" className="d-inline-block align-top" alt="Poke Guide"/>
+                        </Link>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
