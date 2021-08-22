@@ -114,9 +114,9 @@ const getColorType = (type) => {
         case "ice":
             return "#66D1E5";
         case "dragon":
-            return "#29036A";
+            return "#511DAB";
         case "dark":
-            return "#2D221C";
+            return "#5C4538";
         case "fairy":
             return "#F87EA7";
         case "unknown":

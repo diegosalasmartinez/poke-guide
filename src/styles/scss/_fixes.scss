@@ -1,6 +1,10 @@
 body{
   background: rgb(248,249,250);
-  background: linear-gradient(180deg, rgba(248,249,250,1) 0%, rgba(233,231,231,1) 100%);
+  background: linear-gradient(180deg, rgba(248,249,250,1) 0%, rgba(233,231,231,1) 100%) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
