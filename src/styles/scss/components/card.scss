@@ -1,100 +1,73 @@
-@use "sass:math";
-$card-color: #262626;
-
-@mixin materializr($colorVar, $accent: '500', $type: background-color) {
-    @if ($accent == '900') {
-        $colorVar: darken($colorVar, 20%);
-    }
-    #{$type}: $colorVar;
-}
-
-//Pokemon card
 .pokemon_card{
     position: relative;
-    height: 0;
-    padding-bottom: 150px;
-    margin-bottom: 6.6rem;
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    border-radius: 5px;
+    max-width: 240px;
+    z-index: 1;
+    -webkit-box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    -moz-box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 
-    h2 {
-        position: absolute;
-        top: calc(100% - 16px);
-        left: 0;
-        width: 100%;
-        padding: 10px 16px;
-        font-size: 1.4rem;
-        line-height: 1.6rem;
-        margin: 0;
-        z-index: 10;
-        color: white;
-        
-        span {
-            display: block;
-            font-weight: 600;
-            padding-bottom: .5rem;
+    &:hover{
+        .pokemon_card_img_container .pokemon_card_img img{
+            transform: scale(1.15);
         }
-        
-        .types{
-            display: flex;
-            font-size: .9rem;
-            
-            span{
-                margin-right: .5rem;
-            }
-        }
-
-        &:before,
-        &:after {
-            content: ' ';
-            position: absolute;
-            left: 0;
-            top: -16px;
-            width: 0;
-            border: 8px solid;
-        }
-
-        &:after {
-            top: auto;
-            bottom: 0;
-        }
-
-        @include materializr($card-color, '500');
-        &:after {
-            @include materializr($card-color, '500', border-top-color);
-            @include materializr($card-color, '500', border-right-color);
-            border-bottom-color: transparent;
-            border-left-color: transparent;
-        }
-        &:before {
-            border-top-color: transparent;
-            @include materializr($card-color, '900', border-right-color);
-            @include materializr($card-color, '900', border-bottom-color);
-            border-left-color: transparent;
+        .pokemon_card_info{
+            background-color: $primary-hover;
         }
     }
 }
 
 .pokemon_card_img_container{
-    position: absolute;
-    right: 0;
-    top: 0;
-    bottom: 16px;
-    left: 16px;
-
     .pokemon_card_img{
-        overflow: hidden;
-        position: absolute;
-        left: 0;
-        top: 0;
         width: 100%;
         height: 100%;
-        z-index: 3;
+        max-height: 180px;
         display: flex;
         flex-direction: column;
         align-items: center;
 
         img{
+            z-index: 2;
             height: 100%;
+            transition: all 0.3s ease-out;
         }
+    }
+}
+
+.pokemon_card_info{
+    width: 100%;
+    padding: 6px 16px 10px 16px;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
+    margin: 0;
+    z-index: 10;
+    background-color: $primary;
+    color: $white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: all 0.3s ease-out;
+        
+    span {
+        display: block;
+        font-weight: 600;
+        padding-bottom: .5rem;
+    }
+    
+    .types{
+        display: flex;
+        font-size: .9rem;
+        
+        .badge{
+            margin-right: .5rem;
+            
+            &:hover{
+                filter: brightness(1.15);
+            }
+        }
+
     }
 }
 
@@ -109,11 +82,26 @@ $card-color: #262626;
     height: 40px;
     line-height: 40px;
     text-align: center;
-    background-color: $card-color;
+    background-color: $primary;
     cursor: pointer;
     z-index: 20;
+    transition: all 0.3s ease-out;
 
     a{
         color: white;
+
+        path{
+            transition: all 0.3s ease-out;
+        }
+    }
+
+    &:hover{
+        background-color: $primary-hover;
+
+        path{
+            transform: scale(1.35);
+            transform-origin: center;
+            // font-size: 2rem;
+        }
     }
 }

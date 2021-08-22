@@ -19,9 +19,14 @@ export default class PokemonCard extends Component {
         const { pokemon } = this.props;
 
         return (
-            <Col xs="12" sm="6"  md="4" xl="3" className="pokemon_card">
-                <article className="pokemon_card">
-                    <h2>
+            <Col xs="12" sm="6"  md="4" xl="3" className="m-auto">
+                <div className="pokemon_card">
+                    <div className="pokemon_card_img_container">
+                        <div className="pokemon_card_img">
+                            <Image src={pokemon.sprites.front_default}></Image>
+                        </div>
+                    </div>
+                    <div className="pokemon_card_info">
                         <span>
                             {capitalize(pokemon.name)}
                         </span>
@@ -32,18 +37,13 @@ export default class PokemonCard extends Component {
                                 </Badge>  
                             )}
                         </div>
-                    </h2>
-                    <div className="pokemon_card_img_container">
-                        <div className="pokemon_card_img">
-                            <Image src={pokemon.sprites.front_default}></Image>
-                        </div>
                     </div>
                     <div className="pokemon_card_btn">
                         <Link to={"/pokemons/"+pokemon.name} onClick={this.onClickSeeMore}>
                             <FontAwesomeIcon icon={faAngleDoubleRight}/>
                         </Link>
                     </div>
-                </article>
+                </div>
             </Col>
         )
     }
