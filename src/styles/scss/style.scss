@@ -1,3 +1,6 @@
+// Normalize
+@import "normalize";
+
 // If you want to override variables do it here
 @import "variables";
 
@@ -6,8 +9,8 @@
 // Some temp fixes
 @import "fixes";
 
-// Normalize
-@import "normalize";
+// Mixins
+@import "mixins";
 
 // If you want to add something do it here
 @import "custom";

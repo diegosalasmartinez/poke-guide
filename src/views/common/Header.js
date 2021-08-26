@@ -16,7 +16,7 @@ export default class Header extends Component {
 
     render() {
         return (
-            <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="mb-4">
+            <Navbar collapseOnSelect expand="md" bg="light" variant="light" className="mb-4">
                 <Navbar.Brand>
                     <Link to="/" className="navbar-brand">
                         <img src="/assets/pokeball.svg" width="30" height="30" className="d-inline-block align-top" alt="Poke Guide"/>

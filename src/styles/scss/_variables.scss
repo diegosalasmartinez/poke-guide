@@ -1,10 +1,18 @@
-// Variable overrides
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;700&display=swap');
 
-// Fuentes
+// Fonts
 $principal-font: 'Lato', sans-serif;
 $principal-font-size: 1.8rem;
 
+//Media Queries
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+// Global Variables 
 $black: #000000;
 $lightblack: #919191;
 $white: #FFFFFF;
