@@ -1,4 +1,14 @@
+html{
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+*, *:before, *:after{
+  box-sizing: inherit;
+}
+
 body{
+  font-family: $principal-font!important;
+  font-size: $principal-font-size!important;
   background: rgb(248,249,250);
   background: linear-gradient(180deg, rgba(248,249,250,1) 0%, rgba(233,231,231,1) 100%) no-repeat center center fixed; 
   -webkit-background-size: cover;

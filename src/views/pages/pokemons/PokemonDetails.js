@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert } from 'react-bootstrap'
+import { Alert, Col, Image } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
@@ -39,9 +39,9 @@ export class PokemonDetails extends Component {
                     <Alert variant="warning">{errorMessage}</Alert>
                 }
                 { !failed && loaded &&
-                    <div>
-                        Estas viendo la informacion de {pokemonName} 
-                    </div>
+                    <Col>
+                        <Image src={pokemon.sprites.front_default}></Image>
+                    </Col>
                 }
                 { !failed && !loaded &&
                     <Loader></Loader>

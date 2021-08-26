@@ -21,7 +21,7 @@ class PokemonCard extends Component {
         const nId = pokemon.id.toString().padStart(3, "0");
 
         return (
-            <Col xs="12" sm="6"  md="4" xl="3" className="m-auto">
+            <Col xs="12" sm="6" md="4" xl="3" className="m-auto">
                 <div className="pokemon_card">
                     <div className="pokemon_card_img_container">
                         <div className="pokemon_card_img">

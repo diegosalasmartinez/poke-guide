@@ -34,8 +34,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: .5rem;
+        border-top-right-radius: .5rem;
 
         img{
             z-index: 2;
@@ -48,7 +48,6 @@
 .pokemon_card_info{
     width: 100%;
     padding: 6px 16px 10px 16px;
-    font-size: 1.2rem;
     line-height: 1.6rem;
     margin: 0;
     z-index: 10;
@@ -90,9 +89,9 @@
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
     text-align: center;
     background-color: $primary;
     cursor: pointer;

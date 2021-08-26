@@ -25,8 +25,8 @@ class AppRouter extends Component {
             <PersistGate loading={null} persistor={persistor}>
               <BrowserRouter>
                 <React.Suspense fallback={loading}>
-                  <Route path="/" name="Header" render={props => <Header {...props}/>} />
-                  <Container className="bg-main">
+                  <Container className="bg-main" fluid="xxl">
+                    <Route path="/" name="Header" render={props => <Header {...props}/>} />
                     <Switch>
                       <Route exact path="/" name="Pokedex" render={props => <Pokedex {...props}/>} />
                       <Route exact path="/pokedex" name="Pokedex" render={props => <Pokedex {...props}/>} />
