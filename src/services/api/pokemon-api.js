@@ -1,14 +1,20 @@
 import { apiGet } from './api'
 const path = "pokemon"
-const path2 = "pokemon-form"
+const pathForm = "pokemon-form"
+const pathSpecies = "pokemon-species"
 
 const getPokemons = async (pagination) => {
     return await apiGet(`${path}?offset=${pagination.offset}&limit=${pagination.limit}`);
 }
 
 const getPokemonsBasicInfo = async (pagination) => {
-    return await apiGet(`${path2}?offset=${pagination.offset}&limit=${pagination.limit}`);
+    return await apiGet(`${pathForm}?offset=${pagination.offset}&limit=${pagination.limit}`);
 }
+
+const getPokemonSpeciesInfoByName = async (name) => {
+    return await apiGet(`${pathSpecies}/${name}`);
+}
+
 
 const getPokemonByName = async (name) => {
     return await apiGet(`${path}/${name}`);
@@ -17,5 +23,6 @@ const getPokemonByName = async (name) => {
 export { 
     getPokemons,
     getPokemonsBasicInfo,
+    getPokemonSpeciesInfoByName,
     getPokemonByName
 }

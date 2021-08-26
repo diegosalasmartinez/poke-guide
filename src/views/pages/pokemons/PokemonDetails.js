@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Alert, Col, Image } from 'react-bootstrap'
+import { Alert, Col, Row, Image, Tabs, Tab } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
-import PokemonModel from '../../../services/models/PokemonModel'
+import PanelPrevNextOptions from '../../common/PanelPrevNextOptions'
+import PokemonBasicInfo from './PokemonBasicInfo'
 import Loader from '../../common/Loader'
+import PokemonModel from '../../../services/models/PokemonModel'
 
 export class PokemonDetails extends Component {
     constructor(props){
@@ -14,6 +16,7 @@ export class PokemonDetails extends Component {
             pokemon: new PokemonModel(),
             loaded: false,
             failed: false,
+            version: "red",
             errorMessage: ""
         }
     }
@@ -31,17 +34,35 @@ export class PokemonDetails extends Component {
     }
 
     render() {
-        const { failed, loaded, pokemonName, errorMessage, pokemon } = this.state;
-        
+        const { failed, loaded, errorMessage, pokemon, version } = this.state;
+
         return (
             <>
                 { failed && 
                     <Alert variant="warning">{errorMessage}</Alert>
                 }
                 { !failed && loaded &&
-                    <Col>
-                        <Image src={pokemon.sprites.front_default}></Image>
-                    </Col>
+                    <div>
+                        <PanelPrevNextOptions/>
+                        <Row className="pokemon_details">
+                            <Col className="pokemon_details_img">
+                                <Image src={pokemon.sprites.front_default}></Image>
+                            </Col>
+                            <Col className="pokemon_details_info">
+                                <Tabs id="pokemon_details_tab" className="mb-3">
+                                    <Tab eventKey="basic_info" title="Basic Info">
+                                        <PokemonBasicInfo pokemon={pokemon} version={version}/>
+                                    </Tab>
+                                    <Tab eventKey="moves" title="Moves">
+                                        <div>B</div>
+                                    </Tab>
+                                    <Tab eventKey="extended_info" title="Extended Info">
+                                        <div>C</div>
+                                    </Tab>
+                                </Tabs>
+                            </Col>
+                        </Row>
+                    </div>
                 }
                 { !failed && !loaded &&
                     <Loader></Loader>

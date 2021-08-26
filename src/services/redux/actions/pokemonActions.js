@@ -66,7 +66,10 @@ const getPokemonsBasicInfo = (pagination) => async (dispatch) => {
 const getPokemonByName = (pokemonName) => async (dispatch) => {
     let status;
     try{
-        const res = await getPokemonByNameAPI(pokemonName);
+        let res = await getPokemonByNameAPI(pokemonName);
+        const speciesInfo = await apiCustom(res.species.url);
+        res.species = {...speciesInfo};
+        
         if(res){
             return dispatch({
                 type: GET_POKEMON_BY_NAME,

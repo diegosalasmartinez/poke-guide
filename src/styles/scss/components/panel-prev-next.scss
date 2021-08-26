@@ -1,0 +1,18 @@
+.pnl_prev_next_options{
+    display: flex;
+    justify-content: space-between;
+
+    div{
+        background-color: $primary;
+        color: $white;
+        font-size: 1.6rem;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease-out;
+
+        &:hover{
+            cursor: pointer;
+            filter: opacity(0.5);
+        }
+    }
+}
