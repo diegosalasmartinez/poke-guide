@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { Alert, Col, Row, Image, Tabs, Tab } from 'react-bootstrap'
+import { Alert, Col, Row, Tabs, Tab } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
 import PanelPrevNextOptions from '../../common/PanelPrevNextOptions'
 import PokemonBasicInfo from './PokemonBasicInfo'
+import PokemonSpritesDisplay from './PokemonSpritesDisplay'
 import Loader from '../../common/Loader'
 import PokemonModel from '../../../services/models/PokemonModel'
+import { capitalize } from 'src/utils/common'
 
 export class PokemonDetails extends Component {
     constructor(props){
@@ -35,6 +37,7 @@ export class PokemonDetails extends Component {
 
     render() {
         const { failed, loaded, errorMessage, pokemon, version } = this.state;
+        const nId = pokemon.id.toString().padStart(3, "0");
 
         return (
             <>
@@ -42,13 +45,14 @@ export class PokemonDetails extends Component {
                     <Alert variant="warning">{errorMessage}</Alert>
                 }
                 { !failed && loaded &&
-                    <div>
+                    <>
                         <PanelPrevNextOptions/>
-                        <Row className="pokemon_details">
-                            <Col className="pokemon_details_img">
-                                <Image src={pokemon.sprites.front_default}></Image>
+                        <Row className="pokemon_details" xs="12">
+                            <Col className="pokemon_details_img" xs="4">
+                                <div>N°{nId} - {capitalize(pokemon.name)}</div>
+                                <PokemonSpritesDisplay sprites={pokemon.sprites}/>
                             </Col>
-                            <Col className="pokemon_details_info">
+                            <Col className="pokemon_details_info" xs="8">
                                 <Tabs id="pokemon_details_tab" className="mb-3">
                                     <Tab eventKey="basic_info" title="Basic Info">
                                         <PokemonBasicInfo pokemon={pokemon} version={version}/>
@@ -62,7 +66,7 @@ export class PokemonDetails extends Component {
                                 </Tabs>
                             </Col>
                         </Row>
-                    </div>
+                    </>
                 }
                 { !failed && !loaded &&
                     <Loader></Loader>
