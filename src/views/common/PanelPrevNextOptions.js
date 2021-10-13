@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class PanelPrevNextOptions extends Component {
     render() {
         return (
-            <div className="pnl_prev_next_options">
+            <div className="prev_next_options">
                 <div>Previous</div>
                 <div>Next</div>
             </div>

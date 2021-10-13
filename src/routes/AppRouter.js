@@ -21,23 +21,24 @@ const Page404 = React.lazy(() => import('../views/pages/404/Page404'));
 class AppRouter extends Component {
     render() {        
         return (
+          <Container className="bg-main" fluid="xxl">
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
               <BrowserRouter>
                 <React.Suspense fallback={loading}>
-                  <Container className="bg-main" fluid="xxl">
                     <Route path="/" name="Header" render={props => <Header {...props}/>} />
-                    <Switch>
+                  <Switch>
                       <Route exact path="/" name="Pokedex" render={props => <Pokedex {...props}/>} />
                       <Route exact path="/pokedex" name="Pokedex" render={props => <Pokedex {...props}/>} />
                       <Route exact path="/pokedex/:name" name="Pokemon Details" render={props => <PokemonDetails {...props}/>} />
                       <Route path="/" name="404" render={props => <Page404 {...props}/>} />
-                    </Switch>
-                  </Container>
+                    {/* </Container> */}
+                  </Switch>
                 </React.Suspense>
               </BrowserRouter>
             </PersistGate>
           </Provider>
+          </Container>
         )
     }
 }

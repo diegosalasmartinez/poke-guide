@@ -46,8 +46,10 @@ export class PokemonDetails extends Component {
                 }
                 { !failed && loaded &&
                     <>
-                        <PanelPrevNextOptions/>
-                        <Row className="pokemon_details" xs="12">
+                        <Row>
+                            <PanelPrevNextOptions/>
+                        </Row>
+                        <Row className="pokemon_details">
                             <Col className="pokemon_details_img" xs="4">
                                 <div>N°{nId} - {capitalize(pokemon.name)}</div>
                                 <PokemonSpritesDisplay sprites={pokemon.sprites}/>
