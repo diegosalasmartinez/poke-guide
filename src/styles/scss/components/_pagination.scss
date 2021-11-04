@@ -1,0 +1,10 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+
+    .active{
+        .page-link{
+            background: $primary-hover;
+        }
+    }
+}

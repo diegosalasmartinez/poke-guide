@@ -18,10 +18,6 @@
         .pokemon_card_img_container .pokemon_card_img img{
             transform: scale(1.35);
         }
-        .pokemon_card_btn,
-        .pokemon_card_info{
-            background-color: $primary-hover;
-        }
     }
 }
 
@@ -52,7 +48,7 @@
     line-height: 1.6rem;
     margin: 0;
     z-index: 10;
-    background-color: $primary;
+    background-color: $primary-hover;
     color: $white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -74,7 +70,7 @@
         
         .badge{
             margin-right: .5rem;
-            color: $primary-hover;
+            color: $white;
             &:hover{
                 filter: brightness(110%) saturate(140%);
             }
@@ -85,16 +81,16 @@
 
 .pokemon_card_btn{
     position: absolute;
-    right: 16px;
-    top: 15px;
+    right: 3px;
+    top: 3px;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-    line-height: 3rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    line-height: 2.6rem;
     text-align: center;
-    background-color: $primary;
+    background-color: $primary-hover;
     cursor: pointer;
     z-index: 20;
     transition: all 0.3s ease-out;
@@ -108,7 +104,6 @@
         transform: scale(1.35);
         transform-origin: center;
     }
-    
 }
 
 // Pokemon Details
@@ -130,7 +125,4 @@
     img{
         width: 70%;
     }
-}
-
-[id|="pokemon_details_tab-tabpane"]{
 }

@@ -5,7 +5,6 @@
     text-align: center;
     border-radius: 5px;
     transition: all 0.3s ease-out;
-    font-size: 1.5rem;
     padding: 0.4rem 1.2rem;
     z-index: 1;
 
@@ -16,11 +15,6 @@
     &:hover{
         background-color: $primary;
         color: $white;
-
-        @include md{
-            background-color: $background;
-            color: $black;
-        }
     }
     
     &.current{
