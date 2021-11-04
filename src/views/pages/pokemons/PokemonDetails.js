@@ -3,7 +3,7 @@ import { Alert, Col, Row, Tabs, Tab } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
-import PanelPrevNextOptions from '../../common/PanelPrevNextOptions'
+import PrevNextOptions from '../../common/PrevNextOptions'
 import PokemonBasicInfo from './PokemonBasicInfo'
 import PokemonSpritesDisplay from './PokemonSpritesDisplay'
 import Loader from '../../common/Loader'
@@ -47,7 +47,7 @@ export class PokemonDetails extends Component {
                 { !failed && loaded &&
                     <>
                         <Row>
-                            <PanelPrevNextOptions/>
+                            <PrevNextOptions/>
                         </Row>
                         <Row className="pokemon_details">
                             <Col className="pokemon_details_img" xs="4">

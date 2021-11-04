@@ -84,7 +84,7 @@ const typesList = [
 const getColorType = (type) => {
     switch(type){
         case "normal":
-            return "#CCC9AA";
+            return "#A19F92";
         case "fighting":
             return "#800B11";
         case "flying":
@@ -96,7 +96,7 @@ const getColorType = (type) => {
         case "rock":
             return "#94834F";
         case "bug":
-            return "#BDDD6E";
+            return "#8EB62B";
         case "ghost":
             return "#8E55A4";
         case "steel":
@@ -106,7 +106,7 @@ const getColorType = (type) => {
         case "water":
             return "#1480BD";
         case "grass":
-            return "#3E9709";
+            return "#2E680B";
         case "electric":
             return "#FFFA24";
         case "psychic":

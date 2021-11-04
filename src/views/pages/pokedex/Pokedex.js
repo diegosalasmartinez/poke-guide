@@ -12,6 +12,7 @@ import PokemonModel from '../../../services/models/PokemonModel'
 import PokemonCard from './../pokemons/PokemonCard'
 import { arrayToMap } from '../../../utils/common'
 import RPagination from '../../../components/RPagination'
+import SearchPanel from 'src/views/common/SearchPanel'
 
 export class Pokedex extends Component {
     constructor(props){
@@ -56,38 +57,26 @@ export class Pokedex extends Component {
         });
     }
 
-    onClickPokemon = (idPokemon = 1) => {
-        console.log("Ah sos tu mi pana", idPokemon);
-    }
-
     render() {
         const { failed, loaded, pokemons, pokemonsTotalLength, pageSelected, pagination } = this.state;
 
         return (
             <>
-                { failed && 
-                    <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert>
-                }
+                { failed && <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert> }
                 { !failed && loaded &&
                     <>
-                        {pokemons && pokemons.length > 0 ?
+                        <SearchPanel />
+                        { pokemons && pokemons.length > 0 ?
                             <Row>
                                 {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
-                                <RPagination 
-                                    itemsLength={pokemonsTotalLength}
-                                    pageSelected={pageSelected}
-                                    pagination={pagination}
-                                    onClickPage={this.onClickPage}
-                                />
+                                <RPagination itemsLength={pokemonsTotalLength} pageSelected={pageSelected} pagination={pagination} onClickPage={this.onClickPage} />
                             </Row>
                             :
                             <Alert color="info">No se encontraron resultados.</Alert>
                         }
                     </>
                 }
-                { !failed && !loaded &&
-                    <Loader></Loader>
-                }
+                { !failed && !loaded && <Loader></Loader> }
             </>
         )
     }
