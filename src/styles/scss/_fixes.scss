@@ -9,18 +9,13 @@ html{
 body{
   font-family: $principal-font!important;
   font-size: $principal-font-size!important;
-  background: rgb(248,249,250);
-  background: linear-gradient(180deg, rgba(248,249,250,1) 0%, rgba(233,231,231,1) 100%) no-repeat center center fixed; 
+  // background-color: $background;
+  background: linear-gradient(180deg, $background 0%, $background-darker 100%) no-repeat center center fixed; 
+  // background-image: url('./../../assets/pokeball.svg');
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-body::-webkit-scrollbar {
-  display: none;
 }
 
 button {
@@ -30,4 +25,19 @@ button {
   &.disabled {
     cursor: default;
   }
+}
+
+.bg-main{
+  overflow-y: hidden;
+  height: 100vh;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.content{
+  margin-bottom: 4rem;
 }

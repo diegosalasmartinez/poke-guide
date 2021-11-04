@@ -1,3 +1,7 @@
+.pokedex{
+    padding-top: 3rem;
+}
+
 // Pokemon Card
 .pokemon_card{
     position: relative;
@@ -7,13 +11,15 @@
     border-radius: 5px;
     max-width: 240px;
     z-index: 1;
-    -webkit-box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    -moz-box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    background: linear-gradient(145deg, $white, $background-darker) !important;
+    -webkit-box-shadow: 20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
+    -moz-box-shadow: 20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
+    box-shadow:  20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
     transition: all 0.3s ease-out;
 
     &:hover{
         transform: scale(1.15);
+        transform-origin: 50% 0%;
 
         .pokemon_card_img_container .pokemon_card_img img{
             transform: scale(1.35);
@@ -22,8 +28,6 @@
 }
 
 .pokemon_card_img_container{
-    background-color: $white;
-
     .pokemon_card_img{
         width: 100%;
         height: 100%;
@@ -65,9 +69,9 @@
     }
     
     .types{
-        display: flex;
+        display: block;
         font-size: .9rem;
-        
+
         .badge{
             margin-right: .5rem;
             color: $white;
@@ -75,7 +79,6 @@
                 filter: brightness(110%) saturate(140%);
             }
         }
-
     }
 }
 
