@@ -5,7 +5,7 @@ export default class PokemonBasicInfo extends Component {
         const { pokemon, version } = this.props;
         const { species } = pokemon;
         let flavorText = species.flavor_text_entries.find(flavorText => flavorText.language.name === "en" && flavorText.version.name === version);
-        flavorText = flavorText && flavorText.flavor_text || "";
+        flavorText = flavorText ? flavorText.flavor_text : "";
         flavorText = flavorText.replace('', ' ');
 
         return (

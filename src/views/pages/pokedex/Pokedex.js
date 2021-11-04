@@ -61,13 +61,13 @@ export class Pokedex extends Component {
         const { failed, loaded, pokemons, pokemonsTotalLength, pageSelected, pagination } = this.state;
 
         return (
-            <>
+            <div className="content">
                 { failed && <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert> }
                 { !failed && loaded &&
                     <>
                         <SearchPanel />
                         { pokemons && pokemons.length > 0 ?
-                            <Row>
+                            <Row className="panel pokedex">
                                 {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
                                 <RPagination itemsLength={pokemonsTotalLength} pageSelected={pageSelected} pagination={pagination} onClickPage={this.onClickPage} />
                             </Row>
@@ -77,7 +77,7 @@ export class Pokedex extends Component {
                     </>
                 }
                 { !failed && !loaded && <Loader></Loader> }
-            </>
+            </div>
         )
     }
 }

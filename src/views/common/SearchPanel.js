@@ -15,9 +15,9 @@ export default class SearchPanel extends Component {
                 <Col xs="12">
                     <Form>
                         <Form.Group as={Row}>
-                            <Form.Label column sm="2">Enter a pokemon name</Form.Label>
-                            <Col xs="4">
-                                <Form.Control type="text" placeholder="Eg. Pikachu" />
+                            {/* <Form.Label column sm="6" lg="2"></Form.Label> */}
+                            <Col>
+                                <Form.Control type="text" placeholder="Enter a pokemon name" />
                             </Col>
                         </Form.Group>
                     </Form>
