@@ -1,0 +1,62 @@
+.navbar-light .navbar-nav .nav-link{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    border-radius: 5px;
+    transition: all 0.3s ease-out;
+    padding: 0.4rem 1.2rem;
+    z-index: 1;
+
+    &:not(:last-of-type){
+        margin-right: 0.5rem;
+    }
+    
+    &:hover{
+        background-color: $primary;
+        color: $white;
+    }
+    
+    &.current{
+        background-color: $primary-hover;
+        color: $white;
+    }
+
+    &:first-of-type{
+        margin-top: 1rem;
+        @include md{
+            margin-top: 0;
+        }
+    }
+
+    @include md{
+        &::before{
+            content: '';
+            position: absolute;
+            display:inline-block;
+            justify-content: center;
+            width: 100%;
+            background: $primary;
+            height: 0.35rem;
+            bottom: 3.4rem;
+            z-index: -1;
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+            transition: all 250ms ease-in-out;
+
+        }
+        &.current::before{
+            background: $primary-hover;
+        }
+    
+        &.current,
+        &:hover{
+            color: $white;
+    
+            &::before{
+                bottom: -0.5rem;
+                height: 5.35rem;
+            }
+        }
+    }
+}

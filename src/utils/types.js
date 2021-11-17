@@ -84,19 +84,19 @@ const typesList = [
 const getColorType = (type) => {
     switch(type){
         case "normal":
-            return "#CCC9AA";
+            return "#A19F92";
         case "fighting":
             return "#800B11";
         case "flying":
             return "#5EB9B2";
         case "poison":
-            return "#611380";
+            return "#7E1AA6";
         case "ground":
             return "#E1D158";
         case "rock":
             return "#94834F";
         case "bug":
-            return "#BDDD6E";
+            return "#8EB62B";
         case "ghost":
             return "#8E55A4";
         case "steel":
@@ -104,9 +104,9 @@ const getColorType = (type) => {
         case "fire":
             return "#FC0C0B";
         case "water":
-            return "#08517A";
+            return "#1480BD";
         case "grass":
-            return "#3E9709";
+            return "#2E680B";
         case "electric":
             return "#FFFA24";
         case "psychic":
@@ -114,9 +114,9 @@ const getColorType = (type) => {
         case "ice":
             return "#66D1E5";
         case "dragon":
-            return "#29036A";
+            return "#511DAB";
         case "dark":
-            return "#2D221C";
+            return "#5C4538";
         case "fairy":
             return "#F87EA7";
         case "unknown":
@@ -129,5 +129,6 @@ const getColorType = (type) => {
 }
 
 export {
-    getColorType
+    getColorType,
+    typesList
 }

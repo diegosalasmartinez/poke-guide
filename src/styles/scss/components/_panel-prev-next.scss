@@ -1,0 +1,41 @@
+.prev_next_options{
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+    background-color: $primary;
+
+    .prev, .next{
+        background-color: $primary-hover;
+        color: $white;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease-out;
+        width: 90px;
+
+        &:hover{
+            cursor: pointer;
+            background-color: $primary;
+        }
+
+        &.disable{
+            cursor: not-allowed;
+            background-color: $primary-hover;
+        }
+    }
+
+    .prev{
+        text-align: left;        
+    }
+    
+    .next{
+        text-align: right;
+    }
+
+    .title{
+        color: $white;
+        font-weight: 500;
+        padding: 0.5rem 3rem;
+        transition: all 0.3s ease-out;
+        text-align: center;
+    }
+}

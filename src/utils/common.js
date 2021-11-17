@@ -9,10 +9,19 @@ const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+const equalPagination = (pageLocalStorage, actualPage) => {
+    console.log(pageLocalStorage)
+    console.log(actualPage)
+
+    if(!pageLocalStorage) return false;
+    return pageLocalStorage.offset === actualPage.offset && pageLocalStorage.limit === actualPage.limit;
+}
+
 const statsList = ["HP", "Att", "Def", "S.Att", "S.Def", "Spd"]
 
 export { 
     arrayToMap,
     capitalize,
+    equalPagination,
     statsList
 }

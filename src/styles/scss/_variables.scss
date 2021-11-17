@@ -1,5 +1,24 @@
-// Variable overrides
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap');
+
+// Fonts
+$principal-font: 'Roboto', sans-serif;
+$principal-font-size: 1.5rem;
+
+//Media Queries
+$xs: 0;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+// Global Variables 
 $black: #000000;
 $lightblack: #919191;
 $white: #FFFFFF;
-$background: #BDC5C7;
+$background: #F8F9FA;
+$background-darker: #D7D7D7;
+$background-info: #D7D7D7;
+$blue: #0A58CA;
+$primary: #5D6060;
+$primary-hover: #262626;

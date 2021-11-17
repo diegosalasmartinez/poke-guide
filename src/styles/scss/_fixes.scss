@@ -1,6 +1,21 @@
-// todo: disabled button styles
+html{
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+*, *:before, *:after{
+  box-sizing: inherit;
+}
+
 body{
-  background-color: $white;
+  font-family: $principal-font!important;
+  font-size: $principal-font-size!important;
+  // background-color: $background;
+  background: linear-gradient(180deg, $background 0%, $background-darker 100%) no-repeat center center fixed; 
+  // background-image: url('./../../assets/pokeball.svg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 button {
@@ -12,10 +27,17 @@ button {
   }
 }
 
-// todo: brand button icon margin
-.btn-brand:not(:only-child) {
-  .c-icon {
-    margin-top: 0 !important;
-  }
+.bg-main{
+  overflow-y: hidden;
+  height: 100vh;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+.content{
+  margin-bottom: 4rem;
+}

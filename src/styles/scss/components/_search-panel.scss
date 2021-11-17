@@ -1,0 +1,9 @@
+.search-panel{
+    background-color: $primary-hover;
+    color: $white;
+    padding: 1.25rem;
+    
+    .title, .input, .button{
+        width: auto;
+    }
+}

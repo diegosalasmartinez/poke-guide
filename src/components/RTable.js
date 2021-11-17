@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { 
-    Table,
-    Image
+    Table
 } from 'react-bootstrap'
-import { Button } from 'bootstrap';
 
 export default class RTable extends Component {
     constructor(props){
@@ -15,8 +13,8 @@ export default class RTable extends Component {
 
     cellsStyle = (index) => {
         return {
-            backgroundColor: this.state.cellNo == index ? "rgba(0,255,0,0.3)" : "",
-            borderColor: this.state.cellNo == index ? "rgba(0,255,0,0.3)" : ""
+            backgroundColor: this.state.cellNo === index ? "rgba(0,255,0,0.3)" : "",
+            borderColor: this.state.cellNo === index ? "rgba(0,255,0,0.3)" : ""
         }
     }
 
@@ -42,7 +40,7 @@ export default class RTable extends Component {
     }
 
     render() {
-        const { headers, fieldNames, items, className, clickeable } = this.props;
+        const { headers, fieldNames, items, className } = this.props;
 
         return (
             <Table striped bordered hover responsive className={className}>
