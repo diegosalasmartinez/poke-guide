@@ -3,7 +3,7 @@
     color: $white;
     padding: 1.25rem;
     
-    form{
-        font-weight: 300;
+    .title, .input, .button{
+        width: auto;
     }
 }

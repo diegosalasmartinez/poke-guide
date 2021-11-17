@@ -21,10 +21,10 @@ export default class RPagination extends Component {
     render() {
         const { itemsLength = 0, pagination } = this.props;
         const indexSelected = this.state.currentIndex;
-        const numberPages = Math.floor(itemsLength / pagination.limit);
+        const numberPages = Math.ceil(itemsLength / pagination.limit);
         const showFirstPages = indexSelected > 1;
         const showLastPages = indexSelected < numberPages;
-
+        
         return (
             <Pagination>
                 <Pagination.First disabled={!showFirstPages} onClick={() => this.onClickPage(1)}/>

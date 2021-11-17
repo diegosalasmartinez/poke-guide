@@ -44,6 +44,9 @@ export class Pokedex extends Component {
 
     loadList = async () => {
         this.setState({loaded: false, failed: false});
+        if (!this.props.pokemon.allPokemonsFetched) {
+            await this.props.getAllPokemonName();
+        }
         await this.props.getPokemonsBasicInfo(this.state.pagination);
         const pokemon = {...this.props.pokemon};
         const pokemons = [...pokemon.pokemons];
@@ -57,15 +60,20 @@ export class Pokedex extends Component {
         });
     }
 
+    onRedirect = (route) => {
+        this.props.history.push(route);
+    }
+
     render() {
         const { failed, loaded, pokemons, pokemonsTotalLength, pageSelected, pagination } = this.state;
+        const { pokemonNameList } = this.props.pokemon;
 
         return (
             <div className="content">
                 { failed && <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert> }
                 { !failed && loaded &&
                     <>
-                        <SearchPanel />
+                        <SearchPanel options={pokemonNameList} onRedirect={this.onRedirect}/>
                         { pokemons && pokemons.length > 0 ?
                             <Row className="panel pokedex">
                                 {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}

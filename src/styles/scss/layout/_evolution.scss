@@ -1,0 +1,12 @@
+.pokemon_evolution{
+    .title{
+        text-align: center;
+        background-color: $primary;
+        color: $white;   
+    }
+
+    .chain{
+        padding-top: 3rem;
+        background-color: $background-darker;
+    }
+}

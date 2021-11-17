@@ -4,16 +4,21 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
 import PrevNextOptions from '../../common/PrevNextOptions'
-import PokemonBasicInfo from './PokemonBasicInfo'
-import PokemonSpritesDisplay from './PokemonSpritesDisplay'
+import PokemonBasicInfo from './pokemonInfo/PokemonBasicInfo'
+import PokemonSpritesDisplay from './pokemonInfo/PokemonSpritesDisplay'
 import Loader from '../../common/Loader'
 import PokemonModel from '../../../services/models/PokemonModel'
-import { capitalize } from 'src/utils/common'
+import { capitalize } from '../../../utils/common'
+import PokemonEvolution from './pokemonInfo/PokemonEvolution'
+import { apiCustom } from '../../../services/api/api'
+import { getPokemonFormInfoById } from '../../../services/api/pokemon-api'
 
 export class PokemonDetails extends Component {
     constructor(props){
         super(props);
         this.state = {
+            evolutionChain: [],
+            indexPokemon: 0,
             pokemonName: "",
             pokemon: new PokemonModel(),
             loaded: false,
@@ -23,21 +28,76 @@ export class PokemonDetails extends Component {
         }
     }
 
-    async componentDidMount(){
+    async componentDidMount() {
         const pokemonName = this.props.match.params.name;
+        await this.getPokemonInfo(pokemonName);
+    }
+
+    async componentDidUpdate(prevProps) {
+        if (this.props.match.params.name !== prevProps.match.params.name) {
+            await this.getPokemonInfo(this.props.match.params.name);
+        }
+    }
+
+    getPokemonInfo = async (pokemonName) => {
+        this.setState({ loaded: false, failed: false });
         await this.props.getPokemonByName(pokemonName);
+        const index = this.getPokemonIndex(pokemonName);
+
         this.setState({
+            indexPokemon: index,
             pokemonName, 
-            pokemon: {...this.props.pokemon.actualPokemon},
-            loaded: !this.props.pokemon.isLoading,
-            failed: this.props.pokemon.failed,
-            errorMessage: this.props.pokemon.errorMessage
+            pokemon: {...this.props.pokemon.actualPokemon}
+        }, async () => {
+            const res = await apiCustom(this.props.pokemon.actualPokemon.species.evolution_chain.url)
+            const { chain } = res;
+            let evolutionChain = [];
+            let chainIterative = chain;
+            while (true) {
+                const idPokemon = chainIterative.species.url.slice(42, chainIterative.species.url.length - 1);
+                const pokemonChain = await getPokemonFormInfoById(idPokemon); 
+                evolutionChain = [...evolutionChain, pokemonChain];
+
+                if (chainIterative.evolves_to && chainIterative.evolves_to.length > 0) {
+                    chainIterative = chainIterative.evolves_to[0];
+                } else {
+                    break;
+                }
+            }
+
+            this.setState({
+                evolutionChain: evolutionChain,
+                loaded: !this.props.pokemon.isLoading,
+                failed: this.props.pokemon.failed,
+                errorMessage: this.props.pokemon.errorMessage
+            });
         });
     }
 
+    getPokemonIndex = (pokemonName) => {
+        const { pokemonNameList = [] } = this.props.pokemon;
+        for (let i=0; i<pokemonNameList.length; i++) {
+            if (pokemonNameList[i] === pokemonName) return i;
+        }
+        return -1;
+    } 
+
+    onClickPrevNext = (prev, disable) => {
+        if (!disable) {
+            const { pokemonNameList = [] } = this.props.pokemon;
+            if (prev) {
+                this.props.history.push("/pokedex/" + pokemonNameList[this.state.indexPokemon - 1]);
+            } else {
+                this.props.history.push("/pokedex/" + pokemonNameList[this.state.indexPokemon + 1]);
+            }
+        }
+    }
+
     render() {
-        const { failed, loaded, errorMessage, pokemon, version } = this.state;
+        const { failed, loaded, errorMessage, pokemon, version, evolutionChain, indexPokemon } = this.state;
+        const { pokemonNameList = [] } = this.props.pokemon;
         const nId = pokemon.id.toString().padStart(3, "0");
+        const title = "N°" + nId + " - " + capitalize(pokemon.name);
 
         return (
             <>
@@ -46,12 +106,9 @@ export class PokemonDetails extends Component {
                 }
                 { !failed && loaded &&
                     <>
-                        <Row>
-                            <PrevNextOptions/>
-                        </Row>
+                        <PrevNextOptions title={title} index={indexPokemon} size={pokemonNameList.length} onClickPrevNext={this.onClickPrevNext}/>
                         <Row className="pokemon_details">
                             <Col className="pokemon_details_img" xs="4">
-                                <div>N°{nId} - {capitalize(pokemon.name)}</div>
                                 <PokemonSpritesDisplay sprites={pokemon.sprites}/>
                             </Col>
                             <Col className="pokemon_details_info" xs="8">
@@ -60,14 +117,15 @@ export class PokemonDetails extends Component {
                                         <PokemonBasicInfo pokemon={pokemon} version={version}/>
                                     </Tab>
                                     <Tab eventKey="moves" title="Moves">
-                                        <div>B</div>
+                                        <div>In construction.</div>
                                     </Tab>
                                     <Tab eventKey="extended_info" title="Extended Info">
-                                        <div>C</div>
+                                        <div>In construction.</div>
                                     </Tab>
                                 </Tabs>
                             </Col>
                         </Row>
+                        <PokemonEvolution chain={evolutionChain}/>
                     </>
                 }
                 { !failed && !loaded &&

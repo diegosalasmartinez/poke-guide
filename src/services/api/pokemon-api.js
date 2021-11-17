@@ -8,13 +8,24 @@ const getPokemons = async (pagination) => {
 }
 
 const getPokemonsBasicInfo = async (pagination) => {
-    return await apiGet(`${pathForm}?offset=${pagination.offset}&limit=${pagination.limit}`);
+    if (pagination) {
+        return await apiGet(`${pathForm}?offset=${pagination.offset}&limit=${pagination.limit}`);
+    } else {
+        return await apiGet(`${pathForm}`);
+    }
 }
 
 const getPokemonSpeciesInfoByName = async (name) => {
     return await apiGet(`${pathSpecies}/${name}`);
 }
 
+const getPokemonFormInfoByName = async (name) => {
+    return await apiGet(`${pathForm}/${name}`);
+}
+
+const getPokemonFormInfoById = async (id) => {
+    return await apiGet(`${pathForm}/${id}`);
+}
 
 const getPokemonByName = async (name) => {
     return await apiGet(`${path}/${name}`);
@@ -24,5 +35,7 @@ export {
     getPokemons,
     getPokemonsBasicInfo,
     getPokemonSpeciesInfoByName,
+    getPokemonFormInfoByName,
+    getPokemonFormInfoById,
     getPokemonByName
 }

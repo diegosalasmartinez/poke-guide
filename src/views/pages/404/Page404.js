@@ -4,7 +4,7 @@ export default class Page404 extends Component {
     render() {
         return (
             <div>
-                NO
+                In construction
             </div>
         )
     }

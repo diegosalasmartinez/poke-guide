@@ -11,7 +11,7 @@
     border-radius: 5px;
     max-width: 240px;
     z-index: 1;
-    background: linear-gradient(145deg, $white, $background-darker) !important;
+    background-color: $white;
     -webkit-box-shadow: 20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
     -moz-box-shadow: 20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
     box-shadow:  20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
@@ -111,12 +111,9 @@
 
 // Pokemon Details
 .pokemon_details{
-    .pokemon_details_img{
-        background-color: $background-darker;
-
-        div{
-            padding-top: .5rem;
-        }
+    background-color: $background-info;
+    .pokemon_details_img{    
+        background-color: $white;
     }
 }
 
@@ -124,7 +121,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    position: relative;
+
+    .form-switch{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
     img{
         width: 70%;
     }
