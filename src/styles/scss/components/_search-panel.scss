@@ -1,9 +1,20 @@
 .search-panel{
-    background-color: $primary-hover;
+    background-color: $primary;
     color: $white;
     padding: 1.25rem;
     
     .title, .input, .button{
         width: auto;
+        border: none;
+    }
+
+    .button{
+        background-color: $red;
+    }
+
+    .input{
+        input{
+            border: none;
+        }
     }
 }
