@@ -9,9 +9,7 @@ html{
 body{
   font-family: $principal-font!important;
   font-size: $principal-font-size!important;
-  // background-color: $background;
-  background: linear-gradient(180deg, $background 0%, $background-darker 100%) no-repeat center center fixed; 
-  // background-image: url('./../../assets/pokeball.svg');
+  background-color: $background;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

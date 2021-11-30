@@ -5,7 +5,7 @@
     background-color: $primary;
 
     .prev, .next{
-        background-color: $primary-hover;
+        background-color: $primary;
         color: $white;
         font-weight: 500;
         padding: 0.5rem 1rem;
@@ -14,12 +14,12 @@
 
         &:hover{
             cursor: pointer;
-            background-color: $primary;
+            background-color: $red;
         }
 
         &.disable{
             cursor: not-allowed;
-            background-color: $primary-hover;
+            background-color: $secondary;
         }
     }
 

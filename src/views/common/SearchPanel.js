@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { 
     Button,
-    Col,
-    Form,
     Row
 } from 'react-bootstrap'
 import { Hint } from 'react-autocomplete-hint'

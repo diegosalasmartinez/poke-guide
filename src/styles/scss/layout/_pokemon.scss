@@ -2,7 +2,6 @@
     padding-top: 3rem;
 }
 
-// Pokemon Card
 .pokemon_card{
     position: relative;
     width: 80%;
@@ -12,9 +11,6 @@
     max-width: 240px;
     z-index: 1;
     background-color: $white;
-    -webkit-box-shadow: 20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
-    -moz-box-shadow: 20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
-    box-shadow:  20px 20px 40px -20px $background-darker, -20px -20px 40px -40px $background !important;
     transition: all 0.3s ease-out;
 
     &:hover{
@@ -52,7 +48,7 @@
     line-height: 1.6rem;
     margin: 0;
     z-index: 10;
-    background-color: $primary-hover;
+    background-color: $primary;
     color: $white;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
@@ -93,11 +89,15 @@
     height: 2.5rem;
     line-height: 2.6rem;
     text-align: center;
-    background-color: $primary-hover;
+    background-color: $primary;
     cursor: pointer;
     z-index: 20;
     transition: all 0.3s ease-out;
     color: white;
+    
+    &:hover{
+        background-color: $red;
+    }
 
     path{
         transition: all 0.3s ease-out;
@@ -109,9 +109,8 @@
     }
 }
 
-// Pokemon Details
 .pokemon_details{
-    background-color: $background-info;
+    background-color: $white;
     .pokemon_details_img{    
         background-color: $white;
     }

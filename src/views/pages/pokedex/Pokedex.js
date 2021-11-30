@@ -75,10 +75,12 @@ export class Pokedex extends Component {
                     <>
                         <SearchPanel options={pokemonNameList} onRedirect={this.onRedirect}/>
                         { pokemons && pokemons.length > 0 ?
-                            <Row className="panel pokedex">
-                                {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
+                            <>
+                                <Row className="panel pokedex">
+                                    {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
+                                </Row>
                                 <RPagination itemsLength={pokemonsTotalLength} pageSelected={pageSelected} pagination={pagination} onClickPage={this.onClickPage} />
-                            </Row>
+                            </>
                             :
                             <Alert color="info">No se encontraron resultados.</Alert>
                         }
