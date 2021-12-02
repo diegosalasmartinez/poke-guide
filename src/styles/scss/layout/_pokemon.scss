@@ -112,6 +112,9 @@
 .pokemon_details{
     background-color: $white;
     .pokemon_details_img{    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         background-color: $white;
     }
 }
