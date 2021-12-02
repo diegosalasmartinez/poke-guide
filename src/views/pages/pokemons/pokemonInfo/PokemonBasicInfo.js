@@ -4,6 +4,17 @@ import { capitalize } from 'src/utils/common';
 import { getColorType } from '../../../../utils/types'
 
 export default class PokemonBasicInfo extends Component {
+    generateAbilityText = (a) => {
+        const ability = a.ability;
+        const entry = ability.effect_entries.find(e => e.language.name === "en");
+        return (
+            <Col key={a.slot}>
+                <Col>{capitalize(ability.name)}</Col>
+                <Col style={{fontWeight: '300'}}>{entry.effect}</Col>
+            </Col>
+        )
+    }
+
     render() {
         const { pokemon, version } = this.props;
         const { species } = pokemon;
@@ -13,8 +24,9 @@ export default class PokemonBasicInfo extends Component {
 
         return (
             <Row xs="12">
-                <Col xs="12" className="mb-4" style={{fontWeight: '300'}}>
-                    {flavorText}
+                <Col xs="12" className="mb-4" style={{fontWeight: '300'}}>{flavorText}</Col>
+                <Col xs="12" className="mb-4">
+                    { pokemon.abilities.map(a => this.generateAbilityText(a)) }
                 </Col>
                 <Col xs="4">
                     <Row className="mb-2">

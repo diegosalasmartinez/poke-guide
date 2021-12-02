@@ -49,8 +49,8 @@ export class PokemonDetails extends Component {
             pokemonName, 
             pokemon: {...this.props.pokemon.actualPokemon}
         }, async () => {
-            const res = await apiCustom(this.props.pokemon.actualPokemon.species.evolution_chain.url)
-            const { chain } = res;
+            const evolutionChainRes = await apiCustom(this.state.pokemon.species.evolution_chain.url)
+            const { chain } = evolutionChainRes;
             let evolutionChain = [];
             let chainIterative = chain;
             while (true) {
@@ -65,7 +65,15 @@ export class PokemonDetails extends Component {
                 }
             }
 
+            let pokemonUpdated = {...this.state.pokemon};
+            let abilitiesUpdated = [...pokemonUpdated.abilities];
+            for (let i=0; i<this.state.pokemon.abilities.length; i++) {
+                const abilityRes = await apiCustom(this.state.pokemon.abilities[i].ability.url);
+                abilitiesUpdated[i] = {...abilitiesUpdated[i], ability: {...abilityRes}};
+            }
+            pokemonUpdated.abilities = abilitiesUpdated;
             this.setState({
+                pokemon: pokemonUpdated,
                 evolutionChain: evolutionChain,
                 loaded: !this.props.pokemon.isLoading,
                 failed: this.props.pokemon.failed,
