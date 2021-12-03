@@ -12,6 +12,7 @@ import { arrayToMap } from '../../../utils/common'
 import SearchPanel from '../../common/SearchPanel'
 import Loader from '../../common/Loader'
 import RPagination from '../../../components/RPagination'
+import ItemCard from './ItemCard'
 
 export class Items extends Component {
     constructor(props){
@@ -30,6 +31,15 @@ export class Items extends Component {
 
     async componentDidMount(){
         await this.loadList();
+    }
+
+    onClickPage = (indexPage) => {
+        const { pagination } = this.state;
+        let paginationUpdated = {...pagination};
+        paginationUpdated.offset = paginationUpdated.limit * (indexPage - 1);
+        this.setState({ pagination: paginationUpdated, pageSelected: indexPage }, async function(){
+            await this.loadList();
+        })
     }
 
     loadList = async () => {
@@ -66,9 +76,9 @@ export class Items extends Component {
                         <SearchPanel options={itemNameList} onRedirect={this.onRedirect}/>
                         { items && items.length > 0 ?
                             <>
-                                {/* <Row className="panel pokedex">
-                                    {pokemons.map(pokemon => <PokemonCard key={pokemon.id} pokemon={pokemon}/>)}
-                                </Row> */}
+                                <Row className="panel items">
+                                    {items.map(item => <ItemCard key={item.id} item={item}/>)}
+                                </Row>
                                 <RPagination itemsLength={itemsTotalLength} pageSelected={pageSelected} pagination={pagination} onClickPage={this.onClickPage} />
                             </>
                             :
