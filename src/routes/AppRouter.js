@@ -15,7 +15,7 @@ const loading = (
 
 const Header = React.lazy(() => import('../views/common/Header'));
 const Pokedex = React.lazy(() => import('../views/pages/pokedex/Pokedex'));
-const PokemonDetails = React.lazy(() => import('../views/pages/pokemons/PokemonDetails'));
+const PokemonDetails = React.lazy(() => import('../views/pages/pokedex/pokemonInfo/PokemonDetails'));
 const Page404 = React.lazy(() => import('../views/pages/404/Page404'));
 const Footer = React.lazy(() => import('../views/common/Footer'));
 
