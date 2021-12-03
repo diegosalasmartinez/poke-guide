@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Col, Row, Tabs, Tab } from 'react-bootstrap'
+import { Alert, Col, Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
@@ -120,17 +120,7 @@ export class PokemonDetails extends Component {
                                 <PokemonSpritesDisplay sprites={pokemon.sprites}/>
                             </Col>
                             <Col className="pokemon_details_info" xs="8">
-                                <Tabs id="pokemon_details_tab" className="mb-3">
-                                    <Tab eventKey="basic_info" title="Basic Info">
-                                        <PokemonBasicInfo pokemon={pokemon} version={version}/>
-                                    </Tab>
-                                    <Tab eventKey="moves" title="Moves">
-                                        <div>In construction.</div>
-                                    </Tab>
-                                    <Tab eventKey="extended_info" title="Extended Info">
-                                        <div>In construction.</div>
-                                    </Tab>
-                                </Tabs>
+                                <PokemonBasicInfo pokemon={pokemon} version={version}/>
                             </Col>
                         </Row>
                         <PokemonEvolution chain={evolutionChain}/>
