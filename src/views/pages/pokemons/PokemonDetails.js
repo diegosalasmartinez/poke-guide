@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Col, Row, Tabs, Tab } from 'react-bootstrap'
+import { Alert, Col, Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
@@ -49,8 +49,8 @@ export class PokemonDetails extends Component {
             pokemonName, 
             pokemon: {...this.props.pokemon.actualPokemon}
         }, async () => {
-            const res = await apiCustom(this.props.pokemon.actualPokemon.species.evolution_chain.url)
-            const { chain } = res;
+            const evolutionChainRes = await apiCustom(this.state.pokemon.species.evolution_chain.url)
+            const { chain } = evolutionChainRes;
             let evolutionChain = [];
             let chainIterative = chain;
             while (true) {
@@ -65,7 +65,15 @@ export class PokemonDetails extends Component {
                 }
             }
 
+            let pokemonUpdated = {...this.state.pokemon};
+            let abilitiesUpdated = [...pokemonUpdated.abilities];
+            for (let i=0; i<this.state.pokemon.abilities.length; i++) {
+                const abilityRes = await apiCustom(this.state.pokemon.abilities[i].ability.url);
+                abilitiesUpdated[i] = {...abilitiesUpdated[i], ability: {...abilityRes}};
+            }
+            pokemonUpdated.abilities = abilitiesUpdated;
             this.setState({
+                pokemon: pokemonUpdated,
                 evolutionChain: evolutionChain,
                 loaded: !this.props.pokemon.isLoading,
                 failed: this.props.pokemon.failed,
@@ -112,17 +120,7 @@ export class PokemonDetails extends Component {
                                 <PokemonSpritesDisplay sprites={pokemon.sprites}/>
                             </Col>
                             <Col className="pokemon_details_info" xs="8">
-                                <Tabs id="pokemon_details_tab" className="mb-3">
-                                    <Tab eventKey="basic_info" title="Basic Info">
-                                        <PokemonBasicInfo pokemon={pokemon} version={version}/>
-                                    </Tab>
-                                    <Tab eventKey="moves" title="Moves">
-                                        <div>In construction.</div>
-                                    </Tab>
-                                    <Tab eventKey="extended_info" title="Extended Info">
-                                        <div>In construction.</div>
-                                    </Tab>
-                                </Tabs>
+                                <PokemonBasicInfo pokemon={pokemon} version={version}/>
                             </Col>
                         </Row>
                         <PokemonEvolution chain={evolutionChain}/>
