@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import { 
-    Image,
-    Col,
-    Badge
-} from 'react-bootstrap'
+import { Image, Col } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +8,7 @@ import { capitalize } from '../../../utils/common'
 class ItemCard extends Component {
     onClickSeeMore = () => {
         this.props.setActualItem(this.props.item);
-        this.props.history.push("/item/"+this.props.item.name);
+        this.props.history.push("/items/"+this.props.item.name);
     }
 
     render() {

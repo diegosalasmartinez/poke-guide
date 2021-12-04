@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as itemActions from '../../../../services/redux/actions/itemActions'
 import ItemModel from '../../../../services/models/ItemModel'
 import PrevNextOptions from '../../../common/PrevNextOptions'
+import SpriteDisplay from '../../../common/SpriteDisplay'
+import ItemBasicInfo from './ItemBasicInfo'
 import Loader from '../../../common/Loader'
-import { capitalize } from 'src/utils/common'
+import { capitalize } from '../../../../utils/common'
 
 export class ItemDetails extends Component {
     constructor(props){
@@ -30,6 +34,20 @@ export class ItemDetails extends Component {
         });
     }
 
+    async componentDidUpdate(prevProps) {
+        if (this.props.match.params.name !== prevProps.match.params.name) {
+            this.setState({loaded: false, failed: false})
+            await this.props.getItemByNameOrId(this.props.match.params.name);
+            const index = this.getItemIndex(this.props.item.actualItem.name);
+            this.setState({
+                item: this.props.item.actualItem, 
+                indexItem: index,
+                loaded: true, 
+                failed: false
+            });
+        }
+    }
+
     getItemIndex = (itemName) => {
         const { itemNameList = [] } = this.props.item;
         for (let i=0; i<itemNameList.length; i++) {
@@ -38,13 +56,13 @@ export class ItemDetails extends Component {
         return -1;
     }
 
-    onClickPrevNext = (prev, disable) => {
+    onClickPrevNext = async (prev, disable) => {
         if (!disable) {
             const { itemNameList = [] } = this.props.item;
             if (prev) {
-                this.props.history.push("/item/" + itemNameList[this.state.indexItem - 1]);
+                this.props.history.push("/items/" + itemNameList[this.state.indexItem - 1]);
             } else {
-                this.props.history.push("/item/" + itemNameList[this.state.indexItem + 1]);
+                this.props.history.push("/items/" + itemNameList[this.state.indexItem + 1]);
             }
         }
     }
@@ -52,7 +70,6 @@ export class ItemDetails extends Component {
     render() {
         const { failed, loaded, item, indexItem } = this.state;
         const { itemNameList = [] } = this.props.item;
-        console.log(item);
         const nId = item.id.toString().padStart(3, "0");
         const title = "N°" + nId + " - " + capitalize(item.name);
 
@@ -61,12 +78,12 @@ export class ItemDetails extends Component {
                 { !failed && loaded &&
                     <>
                         <PrevNextOptions title={title} index={indexItem} size={itemNameList.length} onClickPrevNext={this.onClickPrevNext}/>
-                        <Row className="pokemon_details">
-                            <Col className="pokemon_details_img" xs="4">
-                                {/* <PokemonSpritesDisplay sprites={pokemon.sprites}/> */}
+                        <Row className="details">
+                            <Col className="details_img" xs="4">
+                                <SpriteDisplay sprite={item.sprites}/>
                             </Col>
-                            <Col className="pokemon_details_info" xs="8">
-                                {/* <PokemonBasicInfo pokemon={pokemon} version={version}/> */}
+                            <Col className="details_info" xs="8">
+                                <ItemBasicInfo item={item}/>
                             </Col>
                         </Row>
                     </>
@@ -87,6 +104,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        ...bindActionCreators(itemActions, dispatch)
     }
 }
 

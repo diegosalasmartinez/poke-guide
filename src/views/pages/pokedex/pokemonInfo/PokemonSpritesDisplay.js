@@ -17,7 +17,7 @@ export default class PokemonSpritesDisplay extends Component {
         const { sprites } = this.props;
         const { shinySprite } = this.state;
         const sprite = shinySprite ? sprites.front_shiny : sprites.front_default;
-
+        
         return (
             <div className="pokemon_sprites">
                 { sprites.front_shiny &&

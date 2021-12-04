@@ -115,11 +115,11 @@ export class PokemonDetails extends Component {
                 { !failed && loaded &&
                     <>
                         <PrevNextOptions title={title} index={indexPokemon} size={pokemonNameList.length} onClickPrevNext={this.onClickPrevNext}/>
-                        <Row className="pokemon_details">
-                            <Col className="pokemon_details_img" xs="4">
+                        <Row className="details">
+                            <Col className="details_img" xs="4">
                                 <PokemonSpritesDisplay sprites={pokemon.sprites}/>
                             </Col>
-                            <Col className="pokemon_details_info" xs="8">
+                            <Col className="details_info" xs="8">
                                 <PokemonBasicInfo pokemon={pokemon} version={version}/>
                             </Col>
                         </Row>

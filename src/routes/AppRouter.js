@@ -35,7 +35,7 @@ class AppRouter extends Component {
                         <Route exact path="/pokedex" name="Pokedex" render={props => <Pokedex {...props}/>} />
                         <Route exact path="/pokedex/:name" name="Pokemon Details" render={props => <PokemonDetails {...props}/>} />
                         <Route exact path="/items" name="Items" render={props => <Items {...props}/>} />
-                        <Route exact path="/item/:name" name="Item Details" render={props => <ItemDetails {...props}/>} />
+                        <Route exact path="/items/:name" name="Item Details" render={props => <ItemDetails {...props}/>} />
                         <Route path="/" name="404" render={props => <Page404 {...props}/>} />
                     </Switch>
                     <Route path="/" name="Footer" render={props => <Footer {...props}/>} />
