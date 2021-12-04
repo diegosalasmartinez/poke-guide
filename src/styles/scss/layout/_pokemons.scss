@@ -109,20 +109,6 @@
     }
 }
 
-.pokemon_details{
-    background-color: $white;
-    .pokemon_details_img{    
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background-color: $white;
-    }
-    .pokemon_details_info{
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
-}
-
 .pokemon_sprites{
     display: flex;
     flex-direction: column;
