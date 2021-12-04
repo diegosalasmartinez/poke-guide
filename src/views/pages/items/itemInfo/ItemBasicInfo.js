@@ -10,10 +10,19 @@ export default class ItemBasicInfo extends Component {
         let effectText = effect ? effect.effect : "";
         effectText = effectText.replace('', ' ');
         const attributes = item.attributes.map(a => capitalize(a.name)).join(", ");
+        const category = item.category.name;
 
         return (
             <Row xs="12">
                 <Col xs="12" className="mb-4" style={{fontWeight: '300'}}>{flavorText.text || ''}</Col>
+                { category && 
+                    <Col xs="12" className="mb-4">
+                        <Row>
+                            <Col xs="2">Category</Col>
+                            <Col xs="10" style={{fontWeight: '300'}}>{capitalize(category)}</Col>     
+                        </Row>
+                    </Col>
+                }
                 { attributes && 
                     <Col xs="12" className="mb-4">
                         <Row>
