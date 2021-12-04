@@ -27,10 +27,12 @@ export default class PokemonBasicInfo extends Component {
         return (
             <Row xs="12">
                 <Col xs="12" className="mb-4" style={{fontWeight: '300'}}>{flavorText}</Col>
-                <Col xs="12" className="mb-4">
-                    <Col>Abilities</Col>
-                    { pokemon.abilities.map(a => this.generateAbilityText(a)) }
-                </Col>
+                { pokemon.abilities && pokemon.abilities.length > 0 && 
+                    <Col xs="12" className="mb-4">
+                        <Col>Abilities</Col>
+                        { pokemon.abilities.map(a => this.generateAbilityText(a)) }
+                    </Col>
+                }
                 <Col xs="4">
                     <Row className="mb-2">
                         <Col xs="3">Types:</Col>

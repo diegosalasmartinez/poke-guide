@@ -14,18 +14,22 @@ export default class ItemBasicInfo extends Component {
         return (
             <Row xs="12">
                 <Col xs="12" className="mb-4" style={{fontWeight: '300'}}>{flavorText.text || ''}</Col>
-                <Col xs="12" className="mb-4">
-                    <Row>
-                        <Col xs="2">Attributes</Col>
-                        <Col xs="10" style={{fontWeight: '300'}}>{attributes}</Col>     
-                    </Row>
-                </Col>
-                <Col xs="12" className="mb-4">
-                    <Row>
-                        <Col xs="2">Effect</Col>
-                        <Col xs="10" style={{fontWeight: '300'}}>{effectText}</Col>     
-                    </Row>
-                </Col>
+                { attributes && 
+                    <Col xs="12" className="mb-4">
+                        <Row>
+                            <Col xs="2">Attributes</Col>
+                            <Col xs="10" style={{fontWeight: '300'}}>{attributes}</Col>     
+                        </Row>
+                    </Col>
+                }
+                { effectText && 
+                    <Col xs="12" className="mb-4">
+                        <Row>
+                            <Col xs="2">Effect</Col>
+                            <Col xs="10" style={{fontWeight: '300'}}>{effectText}</Col>     
+                        </Row>
+                    </Col>
+                }
                 <Col xs="12" className="mb-4">
                     <Row>
                         <Col xs="2">Cost</Col>
