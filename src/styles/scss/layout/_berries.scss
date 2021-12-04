@@ -1,8 +1,8 @@
-.pokedex{
+.berries{
     padding-top: 3rem;
 }
 
-.pokemon_card{
+.berry_card{
     position: relative;
     width: 80%;
     margin: 0 auto;
@@ -17,14 +17,14 @@
         transform: scale(1.15);
         transform-origin: 50% 0%;
 
-        .pokemon_card_img_container .pokemon_card_img img{
+        .berry_card_img_container .berry_card_img img{
             transform: scale(1.35);
         }
     }
 }
 
-.pokemon_card_img_container{
-    .pokemon_card_img{
+.berry_card_img_container{
+    .berry_card_img{
         width: 100%;
         height: 100%;
         max-height: 180px;
@@ -37,12 +37,13 @@
         img{
             z-index: 2;
             height: 100%;
+            width: 50px;
             transition: all 0.3s ease-out;
         }
     }
 }
 
-.pokemon_card_info{
+.berry_card_info{
     width: 100%;
     padding: 6px 16px 10px 16px;
     line-height: 1.6rem;
@@ -54,7 +55,7 @@
     border-bottom-right-radius: 5px;
     transition: all 0.3s ease-out;
         
-    .pokemon_card_info_title {
+    .berry_card_info_title {
         display: block;
         padding-bottom: .5rem;
         
@@ -63,22 +64,9 @@
             font-weight: 400;
         }
     }
-    
-    .types{
-        display: block;
-        font-size: .9rem;
-
-        .badge{
-            margin-right: .5rem;
-            color: $white;
-            &:hover{
-                filter: brightness(110%) saturate(140%);
-            }
-        }
-    }
 }
 
-.pokemon_card_btn{
+.berry_card_btn{
     position: absolute;
     right: 3px;
     top: 3px;
@@ -107,26 +95,4 @@
         transform: scale(1.35);
         transform-origin: center;
     }
-}
-
-.pokemon_sprites{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-
-    .form-switch{
-        position: absolute;
-        right: 0;
-        bottom: 0;
-    }
-
-    img{
-        width: 70%;
-    }
-}
-
-.panel-pokemon-details{
-    overflow-y: auto;
-    height: calc(100vh - 109.53px);
 }
