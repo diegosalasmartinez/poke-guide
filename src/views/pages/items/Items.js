@@ -77,7 +77,7 @@ export class Items extends Component {
                 { failed && <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert> }
                 { !failed && loaded &&
                     <>
-                        <SearchPanel options={itemNameList} onRedirect={this.onRedirect}/>
+                        <SearchPanel title="Type an item" path="items" options={itemNameList} onRedirect={this.onRedirect}/>
                         { items && items.length > 0 ?
                             <>
                                 <Row className="panel items">

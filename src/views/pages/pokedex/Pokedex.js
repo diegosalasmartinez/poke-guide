@@ -73,7 +73,7 @@ export class Pokedex extends Component {
                 { failed && <Alert variant="warning">Hubo un problema al conectarse con el servidor</Alert> }
                 { !failed && loaded &&
                     <>
-                        <SearchPanel options={pokemonNameList} onRedirect={this.onRedirect}/>
+                        <SearchPanel title="Type a pokemon name" path="pokedex" options={pokemonNameList} onRedirect={this.onRedirect}/>
                         { pokemons && pokemons.length > 0 ?
                             <>
                                 <Row className="panel pokedex">
