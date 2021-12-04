@@ -11,13 +11,14 @@ import { capitalize } from '../../../utils/common'
 
 class ItemCard extends Component {
     onClickSeeMore = () => {
-        // this.props.history.push("/item/"+this.props.item.name);
+        this.props.setActualItem(this.props.item);
+        this.props.history.push("/item/"+this.props.item.name);
     }
 
     render() {
         const { item } = this.props;
         const nId = item.id.toString().padStart(3, "0");
-        console.log(item);
+
         return (
             <Col xs="6" sm="6" md="4" xl="3" className="m-auto">
                 <div className="item_card">

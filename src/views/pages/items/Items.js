@@ -64,6 +64,10 @@ export class Items extends Component {
         this.props.history.push(route);
     }
 
+    setActualItem = async (item) => {
+        await this.props.setActualItem(item);
+    }
+
     render() {
         const { failed, loaded, items, itemsTotalLength, pageSelected, pagination } = this.state;
         const { itemNameList } = this.props.item;
@@ -77,7 +81,7 @@ export class Items extends Component {
                         { items && items.length > 0 ?
                             <>
                                 <Row className="panel items">
-                                    {items.map(item => <ItemCard key={item.id} item={item}/>)}
+                                    {items.map(item => <ItemCard key={item.id} item={item} setActualItem={this.setActualItem}/>)}
                                 </Row>
                                 <RPagination itemsLength={itemsTotalLength} pageSelected={pageSelected} pagination={pagination} onClickPage={this.onClickPage} />
                             </>
