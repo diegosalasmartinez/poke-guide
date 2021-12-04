@@ -71,7 +71,8 @@ export class ItemDetails extends Component {
         const { failed, loaded, item, indexItem } = this.state;
         const { itemNameList = [] } = this.props.item;
         const nId = item.id.toString().padStart(3, "0");
-        const title = "N°" + nId + " - " + capitalize(item.name);
+        const name = item.names.find(name => name.language.name === "en") ? item.names.find(name => name.language.name === "en").name : '';
+        const title = "N°" + nId + " - " + name;
 
         return (
             <>
