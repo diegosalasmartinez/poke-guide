@@ -20,16 +20,17 @@ export default class SearchPanel extends Component {
     }
     
     redirectToPage = () => {
-        this.props.onRedirect("/pokedex/" + this.state.text);
+        const { path } = this.props;
+        this.props.onRedirect("/" + path + "/" + this.state.text);
     }
 
     render() {
         const { text } = this.state;
-        const { options } = this.props;
+        const { options, title = "" } = this.props;
 
         return (
             <Row className="search-panel">
-                <div className="title">Type a pokemon name</div>
+                <div className="title">{title}</div>
                 <div className="input">
                     <Hint options={options} allowTabFill={true}>
                         <input
