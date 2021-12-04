@@ -17,6 +17,7 @@ const Header = React.lazy(() => import('../views/common/Header'));
 const Pokedex = React.lazy(() => import('../views/pages/pokedex/Pokedex'));
 const PokemonDetails = React.lazy(() => import('../views/pages/pokedex/pokemonInfo/PokemonDetails'));
 const Items = React.lazy(() => import('../views/pages/items/Items'));
+const ItemDetails = React.lazy(() => import('../views/pages/items/itemInfo/ItemDetails'));
 const Page404 = React.lazy(() => import('../views/pages/404/Page404'));
 const Footer = React.lazy(() => import('../views/common/Footer'));
 
@@ -34,6 +35,7 @@ class AppRouter extends Component {
                         <Route exact path="/pokedex" name="Pokedex" render={props => <Pokedex {...props}/>} />
                         <Route exact path="/pokedex/:name" name="Pokemon Details" render={props => <PokemonDetails {...props}/>} />
                         <Route exact path="/items" name="Items" render={props => <Items {...props}/>} />
+                        <Route exact path="/items/:name" name="Item Details" render={props => <ItemDetails {...props}/>} />
                         <Route path="/" name="404" render={props => <Page404 {...props}/>} />
                     </Switch>
                     <Route path="/" name="Footer" render={props => <Footer {...props}/>} />

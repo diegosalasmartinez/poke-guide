@@ -2,6 +2,7 @@ import {
     GET_ITEMS,
     GET_ITEM_BY_NAME_OR_ID,
     GET_ALL_ITEM,
+    SET_ACTUAL_ITEM,
     CLEAR_STATE_ITEM,
     ERROR_ITEM
 } from '../actions/actionTypes/itemsActionTypes'
@@ -24,6 +25,7 @@ const item = (state = initialState, action) => {
         case GET_ITEMS:
             return {...state, items: [...action.playload.items], actualPage: {...action.playload.pagination}, count: action.playload.count, isLoading: false, failed: false};
         case GET_ITEM_BY_NAME_OR_ID:
+        case SET_ACTUAL_ITEM:
             return {...state, actualItem: {...action.playload}, isLoading: false, failed: false};
         case GET_ALL_ITEM:
             return {...state, itemNameList: [...action.playload], allItemsFetched: true, isLoading: false, failed: false};

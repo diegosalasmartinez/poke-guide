@@ -1,0 +1,23 @@
+.details{
+    background-color: $white;
+    .details_img{    
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $white;
+    }
+    .details_info{
+        padding: 1rem 2rem;
+    }
+}
+
+.sprites{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    img{
+        width: 55%;
+    }
+}
