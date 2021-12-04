@@ -8,7 +8,6 @@ import PrevNextOptions from '../../../common/PrevNextOptions'
 import SpriteDisplay from '../../../common/SpriteDisplay'
 import ItemBasicInfo from './ItemBasicInfo'
 import Loader from '../../../common/Loader'
-import { capitalize } from '../../../../utils/common'
 
 export class ItemDetails extends Component {
     constructor(props){
@@ -71,7 +70,8 @@ export class ItemDetails extends Component {
         const { failed, loaded, item, indexItem } = this.state;
         const { itemNameList = [] } = this.props.item;
         const nId = item.id.toString().padStart(3, "0");
-        const title = "N°" + nId + " - " + capitalize(item.name);
+        const name = item.names.find(name => name.language.name === "en") ? item.names.find(name => name.language.name === "en").name : '';
+        const title = "N°" + nId + " - " + name;
 
         return (
             <>

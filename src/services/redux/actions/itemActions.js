@@ -5,7 +5,7 @@ import {
     SET_ACTUAL_ITEM,
     CLEAR_STATE_ITEM,
     ERROR_ITEM
-} from './actionTypes/itemsActionTypes'
+} from './actionTypes/itemActionTypes'
 import { 
     getItems as getItemsAPI,
     getItemByNameOrId as getItemByNameOrIdAPI
@@ -70,7 +70,6 @@ const getItems = (pagination) => async (dispatch) => {
 const getItemByNameOrId = (name) => async (dispatch) => {
     try{
         const res = await getItemByNameOrIdAPI(name);
-        console.log(res);
         return dispatch({
             type: GET_ITEM_BY_NAME_OR_ID,
             playload: res

@@ -7,7 +7,10 @@ export default class PokemonModel extends SimpleProperty {
     height = 0;
     weight = 0;
     moves = [];
-    species = [];
+    pokemon = {};
+    species = {
+        names: []
+    };
     sprites = [];
     stats = [];
     types = [];

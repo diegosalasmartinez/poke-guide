@@ -5,7 +5,7 @@ import {
     SET_ACTUAL_ITEM,
     CLEAR_STATE_ITEM,
     ERROR_ITEM
-} from '../actions/actionTypes/itemsActionTypes'
+} from '../actions/actionTypes/itemActionTypes'
 import ItemModel from '../../models/ItemModel'
 
 const initialState = {

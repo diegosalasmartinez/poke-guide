@@ -64,19 +64,6 @@
             font-weight: 400;
         }
     }
-    
-    .types{
-        display: block;
-        font-size: .9rem;
-
-        .badge{
-            margin-right: .5rem;
-            color: $white;
-            &:hover{
-                filter: brightness(110%) saturate(140%);
-            }
-        }
-    }
 }
 
 .item_card_btn{

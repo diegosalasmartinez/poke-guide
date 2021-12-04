@@ -105,7 +105,8 @@ export class PokemonDetails extends Component {
         const { failed, loaded, errorMessage, pokemon, version, evolutionChain, indexPokemon } = this.state;
         const { pokemonNameList = [] } = this.props.pokemon;
         const nId = pokemon.id.toString().padStart(3, "0");
-        const title = "N°" + nId + " - " + capitalize(pokemon.name);
+        const name = pokemon.species.names.find(e => e.language.name === "en") ? pokemon.species.names.find(e => e.language.name === "en").name : '';
+        const title = "N°" + nId + " - " + capitalize(name);
 
         return (
             <>
@@ -113,7 +114,7 @@ export class PokemonDetails extends Component {
                     <Alert variant="warning">{errorMessage}</Alert>
                 }
                 { !failed && loaded &&
-                    <>
+                    <div className="panel-pokemon-details">
                         <PrevNextOptions title={title} index={indexPokemon} size={pokemonNameList.length} onClickPrevNext={this.onClickPrevNext}/>
                         <Row className="details">
                             <Col className="details_img" xs="4">
@@ -124,7 +125,7 @@ export class PokemonDetails extends Component {
                             </Col>
                         </Row>
                         <PokemonEvolution chain={evolutionChain}/>
-                    </>
+                    </div>
                 }
                 { !failed && !loaded &&
                     <Loader></Loader>

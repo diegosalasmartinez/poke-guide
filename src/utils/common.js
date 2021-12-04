@@ -10,9 +10,6 @@ const capitalize = (string) => {
 }
 
 const equalPagination = (pageLocalStorage, actualPage) => {
-    console.log(pageLocalStorage)
-    console.log(actualPage)
-
     if(!pageLocalStorage) return false;
     return pageLocalStorage.offset === actualPage.offset && pageLocalStorage.limit === actualPage.limit;
 }
