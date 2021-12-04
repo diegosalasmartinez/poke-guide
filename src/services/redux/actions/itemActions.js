@@ -2,6 +2,7 @@ import {
     GET_ITEMS,
     GET_ITEM_BY_NAME_OR_ID,
     GET_ALL_ITEM,
+    SET_ACTUAL_ITEM,
     CLEAR_STATE_ITEM,
     ERROR_ITEM
 } from './actionTypes/itemsActionTypes'
@@ -66,29 +67,9 @@ const getItems = (pagination) => async (dispatch) => {
     })
 }
 
-// const getPokemonByName = (pokemonName) => async (dispatch) => {
-//     let status;
-//     try{
-//         let res = await getPokemonByNameAPI(pokemonName);
-//         const speciesInfo = await apiCustom(res.species.url);
-//         res.species = {...speciesInfo};
-        
-//         if(res){
-//             return dispatch({
-//                 type: GET_POKEMON_BY_NAME,
-//                 playload: res
-//             })
-//         }
-//     } catch(e){
-//         console.log(e);
-//         status = e.response.status;
-//         console.log('ERROR! '+GET_POKEMON_BY_NAME);
-//     }
-//     return dispatch({
-//         type: ERROR_POKEMON,
-//         playload: status === 404 ? 'We couldn\'t find that pokemon. Try with another one' : 'There was a problem with the server'
-//     })
-// }
+const setActualItem = (item) => async (dispatch) => {
+    return dispatch({type: SET_ACTUAL_ITEM, playload: item})
+}
 
 const clearStateItem = () => async (dispatch) => {
     return dispatch({type: CLEAR_STATE_ITEM})
@@ -97,5 +78,6 @@ const clearStateItem = () => async (dispatch) => {
 export { 
     getAllItems,
     getItems,
+    setActualItem,
     clearStateItem
 }
