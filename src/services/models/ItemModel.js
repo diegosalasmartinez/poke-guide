@@ -2,6 +2,7 @@ import SimpleProperty from './SimpleProperty'
 
 export default class ItemModel extends SimpleProperty {
     id = 0;
+    name = '';
     names = [];
     sprites = {};
     attributes = [];

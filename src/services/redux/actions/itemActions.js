@@ -67,6 +67,25 @@ const getItems = (pagination) => async (dispatch) => {
     })
 }
 
+const getItemByNameOrId = (name) => async (dispatch) => {
+    try{
+        const res = await getItemByNameOrIdAPI(name);
+        console.log(res);
+        return dispatch({
+            type: GET_ITEM_BY_NAME_OR_ID,
+            playload: res
+        })
+    } catch(e){
+        console.log(e);
+        console.log('ERROR! '+GET_ITEM_BY_NAME_OR_ID);
+        console.log(e.response.status);
+    }
+    return dispatch({
+        type: ERROR_ITEM,
+        playload: false
+    })
+}
+
 const setActualItem = (item) => async (dispatch) => {
     return dispatch({type: SET_ACTUAL_ITEM, playload: item})
 }
@@ -78,6 +97,7 @@ const clearStateItem = () => async (dispatch) => {
 export { 
     getAllItems,
     getItems,
+    getItemByNameOrId,
     setActualItem,
     clearStateItem
 }
