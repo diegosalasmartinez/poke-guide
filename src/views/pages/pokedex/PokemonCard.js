@@ -19,7 +19,8 @@ class PokemonCard extends Component {
     render() {
         const { pokemon } = this.props;
         const nId = pokemon.id.toString().padStart(3, "0");
-
+        const name = capitalize(pokemon.pokemon.name) || '';
+        
         return (
             <Col xs="6" sm="6" md="4" xl="3" className="m-auto">
                 <div className="pokemon_card">
@@ -30,7 +31,7 @@ class PokemonCard extends Component {
                     </div>
                     <div className="pokemon_card_info">
                         <div className="pokemon_card_info_title">
-                            <span>N°{nId} -</span> {capitalize(pokemon.name)}
+                            <span>N°{nId} -</span> {name}
                         </div>
                         <div className="types">
                             {pokemon.types.map(type => 

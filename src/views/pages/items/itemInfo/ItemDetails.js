@@ -8,7 +8,6 @@ import PrevNextOptions from '../../../common/PrevNextOptions'
 import SpriteDisplay from '../../../common/SpriteDisplay'
 import ItemBasicInfo from './ItemBasicInfo'
 import Loader from '../../../common/Loader'
-import { capitalize } from '../../../../utils/common'
 
 export class ItemDetails extends Component {
     constructor(props){

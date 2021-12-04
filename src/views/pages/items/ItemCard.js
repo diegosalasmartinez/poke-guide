@@ -14,6 +14,7 @@ class ItemCard extends Component {
     render() {
         const { item } = this.props;
         const nId = item.id.toString().padStart(3, "0");
+        const name = item.names.find(name => name.language.name === "en") ? item.names.find(name => name.language.name === "en").name : '';
 
         return (
             <Col xs="6" sm="6" md="4" xl="3" className="m-auto">
@@ -25,7 +26,7 @@ class ItemCard extends Component {
                     </div>
                     <div className="item_card_info">
                         <div className="item_card_info_title">
-                            <span>N°{nId} -</span> {capitalize(item.name)}
+                            <span>N°{nId} -</span> {capitalize(name)}
                         </div>
                     </div>
                     <div className="item_card_btn" onClick={this.onClickSeeMore}>

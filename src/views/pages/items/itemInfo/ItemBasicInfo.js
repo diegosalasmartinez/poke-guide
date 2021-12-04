@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { capitalize } from 'src/utils/common';
+import { capitalize } from '../../../../utils/common'
 
 export default class ItemBasicInfo extends Component {
     render() {
