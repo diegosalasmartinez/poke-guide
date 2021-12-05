@@ -94,6 +94,10 @@ const setActualBerry = (berry) => async (dispatch) => {
     return dispatch({type: SET_ACTUAL_BERRY, playload: berry})
 }
 
+const setErrorBerry = () => async (dispatch) => {
+    return dispatch({type: ERROR_BERRY, playload: 'We couldn\'t find that berry. Try with another one'})
+}
+
 const clearStateBerry = () => async (dispatch) => {
     return dispatch({type: CLEAR_STATE_BERRY})
 }
@@ -103,5 +107,6 @@ export {
     getBerries,
     getBerryByNameOrId,
     setActualBerry,
+    setErrorBerry,
     clearStateBerry
 }
