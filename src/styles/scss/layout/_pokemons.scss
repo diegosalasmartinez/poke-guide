@@ -128,5 +128,9 @@
 
 .panel-pokemon-details{
     overflow-y: auto;
-    height: calc(100vh - 109.53px);
+    height: calc(100vh - 140px);
+    
+    @include sm{
+        height: calc(100vh - 110px);
+    }
 }
