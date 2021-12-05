@@ -77,7 +77,6 @@ const getItemByNameOrId = (name) => async (dispatch) => {
     } catch(e){
         console.log(e);
         console.log('ERROR! '+GET_ITEM_BY_NAME_OR_ID);
-        console.log(e.response.status);
     }
     return dispatch({
         type: ERROR_ITEM,
@@ -89,6 +88,10 @@ const setActualItem = (item) => async (dispatch) => {
     return dispatch({type: SET_ACTUAL_ITEM, playload: item})
 }
 
+const setErrorItem = () => async (dispatch) => {
+    return dispatch({type: ERROR_ITEM, playload: 'We couldn\'t find that item. Try with another one'})
+}
+
 const clearStateItem = () => async (dispatch) => {
     return dispatch({type: CLEAR_STATE_ITEM})
 }
@@ -98,5 +101,6 @@ export {
     getItems,
     getItemByNameOrId,
     setActualItem,
+    setErrorItem,
     clearStateItem
 }

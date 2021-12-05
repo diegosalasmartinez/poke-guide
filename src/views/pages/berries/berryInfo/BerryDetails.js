@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Alert, Col, Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as berryActions from '../../../../services/redux/actions/berryActions'
@@ -23,26 +23,34 @@ export class BerryDetails extends Component {
         }
     }
 
-    componentDidMount() {
-        const index = this.getBerryIndex(this.props.berry.actualBerry.name);
-        this.setState({
-            berry: this.props.berry.actualBerry, 
-            indexBerry: index,
-            loaded: true, 
-            failed: false
-        });
+    async componentDidMount() {
+        await this.getBerryInfo(this.props.match.params.name);
     }
 
     async componentDidUpdate(prevProps) {
         if (this.props.match.params.name !== prevProps.match.params.name) {
-            this.setState({loaded: false, failed: false})
-            await this.props.getBerryByNameOrId(this.props.match.params.name);
-            const index = this.getBerryIndex(this.props.berry.actualBerry.name);
+            await this.getBerryInfo(this.props.match.params.name);
+        }
+    }
+
+    async getBerryInfo(berryName) {
+        this.setState({loaded: false, failed: false})
+
+        const index = this.getBerryIndex(berryName);
+        if (index >= 0) {
+            await this.props.getBerryByNameOrId(berryName);
             this.setState({
                 berry: this.props.berry.actualBerry, 
-                indexBerry: index,
+                indexItem: index,
                 loaded: true, 
                 failed: false
+            });
+        } else {
+            await this.props.setErrorBerry();
+            this.setState({
+                loaded: !this.props.berry.isLoading, 
+                failed: this.props.berry.failed,
+                errorMessage: this.props.berry.errorMessage
             });
         }
     }
@@ -67,13 +75,16 @@ export class BerryDetails extends Component {
     }
 
     render() {
-        const { failed, loaded, berry, indexBerry } = this.state;
+        const { failed, loaded, errorMessage, berry, indexBerry } = this.state;
         const { berryNameList = [] } = this.props.berry;
         const nId = berry.id.toString().padStart(3, "0");
         const name = berry.item.names.find(name => name.language.name === "en") ? berry.item.names.find(name => name.language.name === "en").name : '';
         const title = "N°" + nId + " - " + name;
         return (
             <>
+                { failed && 
+                    <Alert variant="warning">{errorMessage}</Alert>
+                }
                 { !failed && loaded &&
                     <div className="panel-details">
                         <PrevNextOptions title={title} index={indexBerry} size={berryNameList.length} onClickPrevNext={this.onClickPrevNext}/>
