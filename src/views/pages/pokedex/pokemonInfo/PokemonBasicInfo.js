@@ -10,8 +10,8 @@ export default class PokemonBasicInfo extends Component {
         return (
             <Col key={a.slot}>
                 <Row className="mb-2">
-                    <Col xs="2" style={{fontWeight: '300'}}>{capitalize(ability.name)}</Col>
-                    <Col xs="10" style={{fontWeight: '300'}}>{entry ? entry.effect : "No definition found"}</Col>
+                    <Col xs="4" md="2" style={{fontWeight: '300'}}>{capitalize(ability.name)} </Col>
+                    <Col xs="8" md="10" style={{fontWeight: '300'}}>{entry ? entry.effect : "No definition found"}</Col>
                 </Row>
             </Col>
         )
@@ -33,10 +33,10 @@ export default class PokemonBasicInfo extends Component {
                         { pokemon.abilities.map(a => this.generateAbilityText(a)) }
                     </Col>
                 }
-                <Col xs="4">
+                <Col xs="12" md="4">
                     <Row className="mb-2">
-                        <Col xs="3">Types:</Col>
-                        <Col xs="9">
+                        <Col xs="4" md="3">Types:</Col>
+                        <Col xs="8" md="9">
                             { pokemon.types.map(type => 
                                 <Badge key={type.slot} style={{backgroundColor: getColorType(type.type.name), marginRight: '1rem'}}>
                                     {type.type.name.toUpperCase()}
@@ -45,23 +45,23 @@ export default class PokemonBasicInfo extends Component {
                         </Col>
                     </Row>
                     <Row className="mb-2">
-                        <Col xs="3">Height:</Col>
-                        <Col xs="9" style={{fontWeight: '300'}}>{pokemon.height}</Col>
+                        <Col xs="4" md="3">Height:</Col>
+                        <Col xs="8" md="9" style={{fontWeight: '300'}}>{pokemon.height}</Col>
                     </Row>
                     <Row className="mb-2">
-                        <Col xs="3">Weight:</Col>
-                        <Col xs="9" style={{fontWeight: '300'}}>{pokemon.weight}</Col>
+                        <Col xs="4" md="3">Weight:</Col>
+                        <Col xs="8" md="9" style={{fontWeight: '300'}}>{pokemon.weight}</Col>
                     </Row>
                 </Col>
-                <Col xs="8">
+                <Col xs="12" md="8">
                     <Row>
                         <Col xs="12">
                             <Row>
                                 { pokemon.stats.map((s, index) => 
                                     <Col xs="6" key={index}>
                                         <Row className="mb-2">
-                                            <Col xs="6">{capitalize(s.stat.name) || ''}:</Col>
-                                            <Col xs="6" style={{fontWeight: '300'}}>{s.base_stat}</Col>
+                                            <Col xs="8" md="6" style={{lineHeight: 'normal'}}>{capitalize(s.stat.name.replace('-', ' ')) || ''}:</Col>
+                                            <Col xs="4" md="6" style={{fontWeight: '300'}}>{s.base_stat}</Col>
                                         </Row>
                                     </Col>
                                 ) }

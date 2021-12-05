@@ -114,13 +114,13 @@ export class PokemonDetails extends Component {
                     <Alert variant="warning">{errorMessage}</Alert>
                 }
                 { !failed && loaded &&
-                    <div className="panel-pokemon-details">
+                    <div className="panel-details">
                         <PrevNextOptions title={title} index={indexPokemon} size={pokemonNameList.length} onClickPrevNext={this.onClickPrevNext}/>
                         <Row className="details">
-                            <Col className="details_img" xs="4">
+                            <Col className="details_img" xs="12" md="4">
                                 <PokemonSpritesDisplay sprites={pokemon.sprites}/>
                             </Col>
-                            <Col className="details_info" xs="8">
+                            <Col className="details_info" xs="12" md="8">
                                 <PokemonBasicInfo pokemon={pokemon} version={version}/>
                             </Col>
                         </Row>

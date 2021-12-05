@@ -76,17 +76,17 @@ export class ItemDetails extends Component {
         return (
             <>
                 { !failed && loaded &&
-                    <>
+                    <div className="panel-details">
                         <PrevNextOptions title={title} index={indexItem} size={itemNameList.length} onClickPrevNext={this.onClickPrevNext}/>
                         <Row className="details">
-                            <Col className="details_img" xs="4">
+                            <Col className="details_img" xs="12" md="4">
                                 <SpriteDisplay sprite={item.sprites}/>
                             </Col>
-                            <Col className="details_info" xs="8">
+                            <Col className="details_info" xs="12" md="8">
                                 <ItemBasicInfo item={item}/>
                             </Col>
                         </Row>
-                    </>
+                    </div>
                 }
                 { !failed && !loaded &&
                     <Loader></Loader>
