@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Row } from 'react-bootstrap'
+import { Alert, Col, Row } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as itemActions from '../../../../services/redux/actions/itemActions'
@@ -23,26 +23,34 @@ export class ItemDetails extends Component {
         }
     }
 
-    componentDidMount() {
-        const index = this.getItemIndex(this.props.item.actualItem.name);
-        this.setState({
-            item: this.props.item.actualItem, 
-            indexItem: index,
-            loaded: true, 
-            failed: false
-        });
+    async componentDidMount() {
+        await this.getItemInfo(this.props.match.params.name);
     }
 
     async componentDidUpdate(prevProps) {
         if (this.props.match.params.name !== prevProps.match.params.name) {
-            this.setState({loaded: false, failed: false})
-            await this.props.getItemByNameOrId(this.props.match.params.name);
-            const index = this.getItemIndex(this.props.item.actualItem.name);
+            await this.getItemInfo(this.props.match.params.name);
+        }
+    }
+
+    async getItemInfo(itemName) {
+        this.setState({loaded: false, failed: false})
+
+        const index = this.getItemIndex(itemName);
+        if (index >= 0) {
+            await this.props.getItemByNameOrId(itemName);
             this.setState({
                 item: this.props.item.actualItem, 
                 indexItem: index,
                 loaded: true, 
                 failed: false
+            });
+        } else {
+            await this.props.setErrorItem();
+            this.setState({
+                loaded: !this.props.item.isLoading, 
+                failed: this.props.item.failed,
+                errorMessage: this.props.item.errorMessage
             });
         }
     }
@@ -67,7 +75,7 @@ export class ItemDetails extends Component {
     }
 
     render() {
-        const { failed, loaded, item, indexItem } = this.state;
+        const { failed, loaded, errorMessage, item, indexItem } = this.state;
         const { itemNameList = [] } = this.props.item;
         const nId = item.id.toString().padStart(3, "0");
         const name = item.names.find(name => name.language.name === "en") ? item.names.find(name => name.language.name === "en").name : '';
@@ -75,6 +83,9 @@ export class ItemDetails extends Component {
 
         return (
             <>
+                { failed && 
+                    <Alert variant="warning">{errorMessage}</Alert>
+                }
                 { !failed && loaded &&
                     <div className="panel-details">
                         <PrevNextOptions title={title} index={indexItem} size={itemNameList.length} onClickPrevNext={this.onClickPrevNext}/>
