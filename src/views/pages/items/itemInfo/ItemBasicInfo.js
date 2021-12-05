@@ -18,31 +18,31 @@ export default class ItemBasicInfo extends Component {
                 { category && 
                     <Col xs="12" className="mb-4">
                         <Row>
-                            <Col xs="2">Category</Col>
-                            <Col xs="10" style={{fontWeight: '300'}}>{capitalize(category)}</Col>     
+                            <Col xs="4" md="2">Category</Col>
+                            <Col xs="8" md="10" style={{fontWeight: '300'}}>{capitalize(category)}</Col>     
                         </Row>
                     </Col>
                 }
                 { attributes && 
                     <Col xs="12" className="mb-4">
                         <Row>
-                            <Col xs="2">Attributes</Col>
-                            <Col xs="10" style={{fontWeight: '300'}}>{attributes}</Col>     
+                            <Col xs="4" md="2">Attributes</Col>
+                            <Col xs="8" md="10" style={{fontWeight: '300'}}>{attributes}</Col>     
                         </Row>
                     </Col>
                 }
                 { effectText && 
                     <Col xs="12" className="mb-4">
                         <Row>
-                            <Col xs="2">Effect</Col>
-                            <Col xs="10" style={{fontWeight: '300'}}>{effectText}</Col>     
+                            <Col xs="4" md="2">Effect</Col>
+                            <Col xs="8" md="10" style={{fontWeight: '300'}}>{effectText}</Col>     
                         </Row>
                     </Col>
                 }
                 <Col xs="12" className="mb-4">
                     <Row>
-                        <Col xs="2">Cost</Col>
-                        <Col xs="10" style={{fontWeight: '300'}}>{item.cost}</Col>     
+                        <Col xs="4" md="2">Cost</Col>
+                        <Col xs="8" md="10" style={{fontWeight: '300'}}>{item.cost}</Col>     
                     </Row>
                 </Col>
             </Row>
