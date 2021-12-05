@@ -6,7 +6,6 @@ import * as berryActions from '../../../../services/redux/actions/berryActions'
 import BerryModel from '../../../../services/models/BerryModel'
 import PrevNextOptions from '../../../common/PrevNextOptions'
 import SpriteDisplay from '../../../common/SpriteDisplay'
-// import ItemBasicInfo from './ItemBasicInfo'
 import Loader from '../../../common/Loader'
 import BerryBasicInfo from './BerryBasicInfo'
 
@@ -76,17 +75,17 @@ export class BerryDetails extends Component {
         return (
             <>
                 { !failed && loaded &&
-                    <>
+                    <div className="panel-details">
                         <PrevNextOptions title={title} index={indexBerry} size={berryNameList.length} onClickPrevNext={this.onClickPrevNext}/>
                         <Row className="details">
-                            <Col className="details_img" xs="4">
+                            <Col className="details_img" xs="12" md="4">
                                 <SpriteDisplay sprite={berry.item.sprites}/>
                             </Col>
-                            <Col className="details_info" xs="8">
+                            <Col className="details_info" xs="12" md="8">
                                 <BerryBasicInfo berry={berry}/>
                             </Col>
                         </Row>
-                    </>
+                    </div>
                 }
                 { !failed && !loaded &&
                     <Loader></Loader>
