@@ -107,7 +107,7 @@ export class PokemonDetails extends Component {
         const nId = pokemon.id.toString().padStart(3, "0");
         const name = pokemon.species.names.find(e => e.language.name === "en") ? pokemon.species.names.find(e => e.language.name === "en").name : '';
         const title = "N°" + nId + " - " + capitalize(name);
-
+        
         return (
             <>
                 { failed && 
@@ -124,7 +124,9 @@ export class PokemonDetails extends Component {
                                 <PokemonBasicInfo pokemon={pokemon} version={version}/>
                             </Col>
                         </Row>
-                        <PokemonEvolution chain={evolutionChain}/>
+                        { evolutionChain && evolutionChain.length > 1 && 
+                            <PokemonEvolution chain={evolutionChain}/>
+                        }
                     </div>
                 }
                 { !failed && !loaded &&
