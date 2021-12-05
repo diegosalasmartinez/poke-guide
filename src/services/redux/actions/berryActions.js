@@ -74,7 +74,6 @@ const getBerryByNameOrId = (name) => async (dispatch) => {
         let res = await getBerryByNameOrIdAPI(name);
         const itemInfo = await apiCustom(res.item.url);
         res = {...res, item: {...itemInfo}};
-        console.log(res);
         return dispatch({
             type: GET_BERRY_BY_NAME_OR_ID,
             playload: res
