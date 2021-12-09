@@ -1,8 +1,0 @@
-.panel{
-    overflow-y: auto;
-    height: calc(100vh - 280px);
-    
-    @include sm{
-        height: calc(100vh - 210px);
-    }
-}
