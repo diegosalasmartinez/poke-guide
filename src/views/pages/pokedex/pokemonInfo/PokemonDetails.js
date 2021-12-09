@@ -114,7 +114,7 @@ export class PokemonDetails extends Component {
                     <Alert variant="warning">{errorMessage}</Alert>
                 }
                 { !failed && loaded &&
-                    <div className="panel-details">
+                    <div className="content">
                         <PrevNextOptions title={title} index={indexPokemon} size={pokemonNameList.length} onClickPrevNext={this.onClickPrevNext}/>
                         <Row className="details">
                             <Col className="details_img" xs="12" md="4">

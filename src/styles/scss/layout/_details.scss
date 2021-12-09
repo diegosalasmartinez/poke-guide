@@ -1,12 +1,3 @@
-.panel-details{
-    overflow-y: auto;
-    height: calc(100vh - 140px);
-    
-    @include sm{
-        height: calc(100vh - 110px);
-    }
-}
-
 .details{
     background-color: $white;
     .details_img{    
