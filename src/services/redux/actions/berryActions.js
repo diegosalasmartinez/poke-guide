@@ -1,7 +1,6 @@
 import { 
     GET_BERRIES,
     GET_BERRY_BY_NAME_OR_ID,
-    GET_ALL_BERRY,
     SET_ACTUAL_BERRY,
     CLEAR_STATE_BERRY,
     ERROR_BERRY
@@ -11,35 +10,6 @@ import {
     getBerryByNameOrId as getBerryByNameOrIdAPI
 } from '../../api/berry-api'
 import { apiCustom } from '../../api/api'
-
-const getAllBerries = () => async (dispatch) => {
-    try{
-        let res = await getBerriesAPI();
-        let berries = [];
-        if (res) {
-            while (true) {
-                for (let i=0; i<res.results.length; i++){
-                    berries = [...berries, res.results[i].name];
-                }
-
-                if (!res.next) break;
-                res = await apiCustom(res.next);
-            }
-            return dispatch({
-                type: GET_ALL_BERRY,
-                playload: berries
-            })
-        }
-    } catch(e){
-        console.log(e);
-        console.log('ERROR! '+GET_ALL_BERRY);
-        console.log(e.response.status);
-    }
-    return dispatch({
-        type: ERROR_BERRY,
-        playload: false
-    })
-}
 
 const getBerries = (pagination) => async (dispatch) => {
     try{
@@ -102,7 +72,6 @@ const clearStateBerry = () => async (dispatch) => {
 }
 
 export { 
-    getAllBerries,
     getBerries,
     getBerryByNameOrId,
     setActualBerry,

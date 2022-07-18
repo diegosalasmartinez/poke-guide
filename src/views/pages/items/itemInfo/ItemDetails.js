@@ -8,6 +8,7 @@ import PrevNextOptions from '../../../common/PrevNextOptions'
 import SpriteDisplay from '../../../common/SpriteDisplay'
 import ItemBasicInfo from './ItemBasicInfo'
 import Loader from '../../../common/Loader'
+import { itemNameList } from '../data'
 
 export class ItemDetails extends Component {
     constructor(props){
@@ -56,7 +57,6 @@ export class ItemDetails extends Component {
     }
 
     getItemIndex = (itemName) => {
-        const { itemNameList = [] } = this.props.item;
         for (let i=0; i<itemNameList.length; i++) {
             if (itemNameList[i] === itemName) return i;
         }
@@ -65,7 +65,6 @@ export class ItemDetails extends Component {
 
     onClickPrevNext = async (prev, disable) => {
         if (!disable) {
-            const { itemNameList = [] } = this.props.item;
             if (prev) {
                 this.props.history.push("/items/" + itemNameList[this.state.indexItem - 1]);
             } else {
@@ -76,7 +75,6 @@ export class ItemDetails extends Component {
 
     render() {
         const { failed, loaded, errorMessage, item, indexItem } = this.state;
-        const { itemNameList = [] } = this.props.item;
         const nId = item.id.toString().padStart(3, "0");
         const name = item.names.find(name => name.language.name === "en") ? item.names.find(name => name.language.name === "en").name : '';
         const title = "N°" + nId + " - " + name;

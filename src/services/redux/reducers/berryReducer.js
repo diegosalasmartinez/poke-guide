@@ -1,7 +1,6 @@
 import { 
     GET_BERRIES,
     GET_BERRY_BY_NAME_OR_ID,
-    GET_ALL_BERRY,
     SET_ACTUAL_BERRY,
     CLEAR_STATE_BERRY,
     ERROR_BERRY
@@ -13,8 +12,6 @@ const initialState = {
     count: 0,
     actualPage: [],
     actualBerry: new BerryModel(),
-    berryNameList: [],
-    allBerriesFetched: false,
     errorMessage: "",
     isLoading: true,
     failed: false
@@ -27,8 +24,6 @@ const berry = (state = initialState, action) => {
         case GET_BERRY_BY_NAME_OR_ID:
         case SET_ACTUAL_BERRY:
             return {...state, actualBerry: {...action.playload}, isLoading: false, failed: false};
-        case GET_ALL_BERRY:
-            return {...state, berryNameList: [...action.playload], allBerriesFetched: true, isLoading: false, failed: false};
         case ERROR_BERRY:
             return {...state, isLoading: false, failed: true, errorMessage: action.playload};
         case CLEAR_STATE_BERRY:

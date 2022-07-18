@@ -7,12 +7,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as pokemonActions from '../../../services/redux/actions/pokemonActions'
 import Loader from '../../../views/common/Loader'
+import SearchPanel from '../../../views/common/SearchPanel'
 import pagination from '../../../services/models/common/pagination'
 import PokemonModel from '../../../services/models/PokemonModel'
 import PokemonCard from './PokemonCard'
 import { arrayToMap } from '../../../utils/common'
 import RPagination from '../../../components/RPagination'
-import SearchPanel from 'src/views/common/SearchPanel'
+import { pokemonNameList } from './data'
 
 export class Pokedex extends Component {
     constructor(props){
@@ -44,9 +45,6 @@ export class Pokedex extends Component {
 
     loadList = async () => {
         this.setState({loaded: false, failed: false});
-        if (!this.props.pokemon.allPokemonsFetched) {
-            await this.props.getAllPokemonName();
-        }
         await this.props.getPokemonsBasicInfo(this.state.pagination);
         const pokemon = {...this.props.pokemon};
         const pokemons = [...pokemon.pokemons];
@@ -66,7 +64,6 @@ export class Pokedex extends Component {
 
     render() {
         const { failed, loaded, pokemons, pokemonsTotalLength, pageSelected, pagination } = this.state;
-        const { pokemonNameList } = this.props.pokemon;
 
         return (
             <div className="content">

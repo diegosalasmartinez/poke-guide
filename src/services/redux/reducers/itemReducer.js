@@ -1,7 +1,6 @@
 import {
     GET_ITEMS,
     GET_ITEM_BY_NAME_OR_ID,
-    GET_ALL_ITEM,
     SET_ACTUAL_ITEM,
     CLEAR_STATE_ITEM,
     ERROR_ITEM
@@ -13,8 +12,6 @@ const initialState = {
     count: 0,
     actualPage: [],
     actualItem: new ItemModel(),
-    itemNameList: [],
-    allItemsFetched: false,
     errorMessage: "",
     isLoading: true,
     failed: false
@@ -27,8 +24,6 @@ const item = (state = initialState, action) => {
         case GET_ITEM_BY_NAME_OR_ID:
         case SET_ACTUAL_ITEM:
             return {...state, actualItem: {...action.playload}, isLoading: false, failed: false};
-        case GET_ALL_ITEM:
-            return {...state, itemNameList: [...action.playload], allItemsFetched: true, isLoading: false, failed: false};
         case ERROR_ITEM:
             return {...state, isLoading: false, failed: true, errorMessage: action.playload};
         case CLEAR_STATE_ITEM:

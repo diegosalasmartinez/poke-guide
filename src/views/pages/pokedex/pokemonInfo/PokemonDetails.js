@@ -12,6 +12,7 @@ import { capitalize } from '../../../../utils/common'
 import PokemonEvolution from './PokemonEvolution'
 import { apiCustom } from '../../../../services/api/api'
 import { getPokemonFormInfoById } from '../../../../services/api/pokemon-api'
+import { pokemonNameList } from '../data'
 
 export class PokemonDetails extends Component {
     constructor(props){
@@ -83,7 +84,6 @@ export class PokemonDetails extends Component {
     }
 
     getPokemonIndex = (pokemonName) => {
-        const { pokemonNameList = [] } = this.props.pokemon;
         for (let i=0; i<pokemonNameList.length; i++) {
             if (pokemonNameList[i] === pokemonName) return i;
         }
@@ -92,7 +92,6 @@ export class PokemonDetails extends Component {
 
     onClickPrevNext = (prev, disable) => {
         if (!disable) {
-            const { pokemonNameList = [] } = this.props.pokemon;
             if (prev) {
                 this.props.history.push("/pokedex/" + pokemonNameList[this.state.indexPokemon - 1]);
             } else {
@@ -103,7 +102,6 @@ export class PokemonDetails extends Component {
 
     render() {
         const { failed, loaded, errorMessage, pokemon, version, evolutionChain, indexPokemon } = this.state;
-        const { pokemonNameList = [] } = this.props.pokemon;
         const nId = pokemon.id.toString().padStart(3, "0");
         const name = pokemon.species.names.find(e => e.language.name === "en") ? pokemon.species.names.find(e => e.language.name === "en").name : '';
         const title = "N°" + nId + " - " + capitalize(name);

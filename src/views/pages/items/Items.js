@@ -13,6 +13,7 @@ import SearchPanel from '../../common/SearchPanel'
 import Loader from '../../common/Loader'
 import RPagination from '../../../components/RPagination'
 import ItemCard from './ItemCard'
+import { itemNameList } from './data'
 
 export class Items extends Component {
     constructor(props){
@@ -44,9 +45,6 @@ export class Items extends Component {
 
     loadList = async () => {
         this.setState({loaded: false, failed: false});
-        if (!this.props.item.allItemsFetched) {
-            await this.props.getAllItems();
-        }
         await this.props.getItems(this.state.pagination);
         const item = {...this.props.item};
         const items = [...item.items];
@@ -70,7 +68,6 @@ export class Items extends Component {
 
     render() {
         const { failed, loaded, items, itemsTotalLength, pageSelected, pagination } = this.state;
-        const { itemNameList } = this.props.item;
 
         return (
             <div className="content">

@@ -13,6 +13,7 @@ import SearchPanel from '../../common/SearchPanel'
 import Loader from '../../common/Loader'
 import RPagination from '../../../components/RPagination'
 import BerryCard from './BerryCard'
+import { berryNameList } from './data'
 
 export class Berries extends Component {
     constructor(props){
@@ -44,9 +45,6 @@ export class Berries extends Component {
 
     loadList = async () => {
         this.setState({loaded: false, failed: false});
-        if (!this.props.berry.allBerriesFetched) {
-            await this.props.getAllBerries();
-        }
         await this.props.getBerries(this.state.pagination);
         const berry = {...this.props.berry};
         const berries = [...berry.berries];
@@ -70,7 +68,6 @@ export class Berries extends Component {
 
     render() {
         const { failed, loaded, berries, berriesTotalLength, pageSelected, pagination } = this.state;
-        const { berryNameList } = this.props.berry;
 
         return (
             <div className="content">

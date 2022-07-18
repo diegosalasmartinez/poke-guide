@@ -8,6 +8,7 @@ import PrevNextOptions from '../../../common/PrevNextOptions'
 import SpriteDisplay from '../../../common/SpriteDisplay'
 import Loader from '../../../common/Loader'
 import BerryBasicInfo from './BerryBasicInfo'
+import { berryNameList } from '../data'
 
 export class BerryDetails extends Component {
     constructor(props){
@@ -56,7 +57,6 @@ export class BerryDetails extends Component {
     }
 
     getBerryIndex = (berryName) => {
-        const { berryNameList = [] } = this.props.berry;
         for (let i=0; i<berryNameList.length; i++) {
             if (berryNameList[i] === berryName) return i;
         }
@@ -65,7 +65,6 @@ export class BerryDetails extends Component {
 
     onClickPrevNext = async (prev, disable) => {
         if (!disable) {
-            const { berryNameList = [] } = this.props.berry;
             if (prev) {
                 this.props.history.push("/berries/" + berryNameList[this.state.indexBerry - 1]);
             } else {
@@ -76,7 +75,6 @@ export class BerryDetails extends Component {
 
     render() {
         const { failed, loaded, errorMessage, berry, indexBerry } = this.state;
-        const { berryNameList = [] } = this.props.berry;
         const nId = berry.id.toString().padStart(3, "0");
         const name = berry.item.names.find(name => name.language.name === "en") ? berry.item.names.find(name => name.language.name === "en").name : '';
         const title = "N°" + nId + " - " + name;

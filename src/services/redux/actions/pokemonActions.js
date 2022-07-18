@@ -1,7 +1,6 @@
 import { 
     GET_POKEMONS,
     GET_POKEMON_BY_NAME,
-    GET_ALL_POKEMON,
     CLEAR_STATE_POKEMON,
     ERROR_POKEMON
 } from './actionTypes/pokemonActionTypes'
@@ -11,36 +10,6 @@ import {
     getPokemonByName as getPokemonByNameAPI
 } from '../../api/pokemon-api'
 import { apiCustom } from '../../api/api'
-
-const getAllPokemonName = () => async (dispatch) => {
-    try{
-        let res = await getPokemonsBasicInfoAPI();
-        let pokemons = [];
-        if (res) {
-            
-            while (true) {
-                for (let i=0; i<res.results.length; i++){
-                    pokemons = [...pokemons, res.results[i].name];
-                }
-
-                if (!res.next) break;
-                res = await apiCustom(res.next);
-            }
-            return dispatch({
-                type: GET_ALL_POKEMON,
-                playload: pokemons
-            })
-        }
-    } catch(e){
-        console.log(e);
-        console.log('ERROR! '+GET_ALL_POKEMON);
-        console.log(e.response.status);
-    }
-    return dispatch({
-        type: ERROR_POKEMON,
-        playload: false
-    })
-}
 
 const getPokemons = (pagination) => async (dispatch) => {
     try{
@@ -124,7 +93,6 @@ const clearStatePokemon = () => async (dispatch) => {
 
 export { 
     getPokemons,
-    getAllPokemonName,
     getPokemonsBasicInfo,
     getPokemonByName,
     clearStatePokemon

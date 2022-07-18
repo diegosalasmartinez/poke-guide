@@ -1,6 +1,5 @@
 export const GET_ITEMS = 'GET_ITEMS'
 export const GET_ITEM_BY_NAME_OR_ID = 'GET_ITEM_BY_NAME_OR_ID'
-export const GET_ALL_ITEM = 'GET_ALL_ITEM'
 export const SET_ACTUAL_ITEM = 'SET_ACTUAL_ITEM'
 export const ERROR_ITEM = 'ERROR_ITEM'
 export const CLEAR_STATE_ITEM = 'CLEAR_STATE_ITEM'

@@ -1,7 +1,6 @@
 import { 
     GET_ITEMS,
     GET_ITEM_BY_NAME_OR_ID,
-    GET_ALL_ITEM,
     SET_ACTUAL_ITEM,
     CLEAR_STATE_ITEM,
     ERROR_ITEM
@@ -11,35 +10,6 @@ import {
     getItemByNameOrId as getItemByNameOrIdAPI
 } from '../../api/item-api'
 import { apiCustom } from '../../api/api'
-
-const getAllItems = () => async (dispatch) => {
-    try{
-        let res = await getItemsAPI();
-        let items = [];
-        if (res) {
-            while (true) {
-                for (let i=0; i<res.results.length; i++){
-                    items = [...items, res.results[i].name];
-                }
-
-                if (!res.next) break;
-                res = await apiCustom(res.next);
-            }
-            return dispatch({
-                type: GET_ALL_ITEM,
-                playload: items
-            })
-        }
-    } catch(e){
-        console.log(e);
-        console.log('ERROR! '+GET_ALL_ITEM);
-        console.log(e.response.status);
-    }
-    return dispatch({
-        type: ERROR_ITEM,
-        playload: false
-    })
-}
 
 const getItems = (pagination) => async (dispatch) => {
     try{
@@ -97,7 +67,6 @@ const clearStateItem = () => async (dispatch) => {
 }
 
 export { 
-    getAllItems,
     getItems,
     getItemByNameOrId,
     setActualItem,

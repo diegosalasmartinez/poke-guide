@@ -1,7 +1,6 @@
 import {
     GET_POKEMONS,
     GET_POKEMON_BY_NAME,
-    GET_ALL_POKEMON,
     CLEAR_STATE_POKEMON,
     ERROR_POKEMON
 } from '../actions/actionTypes/pokemonActionTypes'
@@ -12,8 +11,6 @@ const initialState = {
     count: 0,
     actualPage: [],
     actualPokemon: new PokemonModel(),
-    pokemonNameList: [],
-    allPokemonsFetched: false,
     errorMessage: "",
     isLoading: true,
     failed: false
@@ -25,8 +22,6 @@ const pokemon = (state = initialState, action) => {
             return {...state, pokemons: [...action.playload.pokemons], actualPage: {...action.playload.pagination}, count: action.playload.count, isLoading: false, failed: false};
         case GET_POKEMON_BY_NAME:
             return {...state, actualPokemon: {...action.playload}, isLoading: false, failed: false};
-        case GET_ALL_POKEMON:
-            return {...state, pokemonNameList: [...action.playload], allPokemonsFetched: true, isLoading: false, failed: false};
         case ERROR_POKEMON:
             return {...state, isLoading: false, failed: true, errorMessage: action.playload};
         case CLEAR_STATE_POKEMON:
