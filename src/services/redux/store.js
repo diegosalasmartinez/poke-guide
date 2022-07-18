@@ -12,7 +12,6 @@ const persistConfig = {
     stateReconciler: hardSet
 }
 
-//En este grupo usamos Redux B)
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)));
 const persistor = persistStore(store);
