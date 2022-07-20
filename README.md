@@ -1,12 +1,14 @@
 # Poke Guide
 
-Pole Guide simulates a pokedex where you can find all the information about pokemons, items and berries.
+Poke Guide simulates a pokedex where you can find all the information about pokemons, items and berries.
 
 This project uses [Pokemon icons created by Nikita Golubev - Flaticon](https://www.flaticon.com/free-icons/pokemon).
 
 ## Basic Usage
 
 You can visit the project on [Poke Guide](https://diegosalas-pokeguide.web.app).
+
+![App thumbnail](./doc/thumb.png)
 
 ## Instalation
 
@@ -30,7 +32,7 @@ npm start
 
 ### Author
 
-Diego Salas [Diego Salas](https://www.linkedin.com/in/diego-alejandro-salas-martinez/)
+[Diego Salas](https://www.linkedin.com/in/diego-alejandro-salas-martinez/)
 
 ### Version
 
